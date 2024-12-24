@@ -1,0 +1,48 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0c1461;
+    padding: 0px ;
+    color: white;
+    width: 100%; /* Pastikan navbar meluas penuh */
+    position: fixed; /* Buat navbar tetap di bagian atas saat di-scroll */
+    top: 0; /* Pastikan navbar menempel di atas */
+    left: 0; /* Mulai dari sisi kiri */
+    z-index: 1000; /* Pastikan tetap di atas elemen lainnya */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambahkan sedikit bayangan untuk estetika */
+  }
+  
+  .navbar-brand h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin-right: 50px;
+    padding: 0;
+  }
+
+  .navbar-menu li {
+    font-size: 1.1rem;
+  }
+  
+  .navbar-menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  .navbar-menu li a:hover {
+    color: #FFD700;
+  }
+  
+  /* Tambahkan margin-top untuk konten utama agar tidak tertutup navbar */
+  .dashboard {
+    margin-top: 50px; /* Sesuaikan dengan tinggi navbar */
+  }
+  

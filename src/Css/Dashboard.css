@@ -1,0 +1,127 @@
+/* Dashboard Container */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #0d47a1, #000000); /* Gradasi biru gelap ke hitam */
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+}
+
+/* Heading Style */
+.dashboard h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* Subheading Style */
+.dashboard h4 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 60px;
+    color: #b3e5fc;
+}
+
+/* Card Container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Card Styling */
+/* Card Styling */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.7); /* Transparan dengan latar putih */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 240px;
+    height: 380px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Card Image */
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Gambar memenuhi area tanpa distorsi */
+
+}
+
+/* Card Content */
+.card-content {
+    padding: 10px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Card Title */
+.card-content h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0d47a1;
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* Card Text */
+.card-content p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.2;
+    margin: 0;
+    text-align: center;
+}
+
+/* Buy Now Button */
+.buy-now-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-top: 10px; /* Tambahkan jarak di atas tombol */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buy-now-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Hover Effect for Card */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-image {
+        height: 200px;
+    }
+
+    .buy-now-button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}

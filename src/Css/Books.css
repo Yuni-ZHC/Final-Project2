@@ -1,0 +1,120 @@
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;  /* Tinggi navbar */
+    background-color: #333;
+    z-index: 1000;  /* Menjaga navbar di atas konten lainnya */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+}
+
+/* Jarak antara navbar dan konten */
+/* Jarak antara navbar dan konten */
+.books {
+    padding-top: 1000px;  /* Menambahkan jarak lebih banyak antara navbar dan konten */
+}
+
+/* Card Container */
+.card-container {
+    display: grid;
+    top: 500px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  /* Menyesuaikan dengan ukuran layar */
+    gap: 30px;
+    padding: 200px;
+    justify-items: center;
+}
+
+/* Card Styling */
+.card {
+    width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 10px;  /* Memberikan border radius yang lebih besar untuk kesan lebih halus */
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Card Image */
+.card-image {
+    width: 100%;
+    height: 200px;  /* Menentukan tinggi gambar */
+    object-fit: cover;
+    border-radius: 8px;  /* Menambahkan border radius pada gambar */
+}
+
+/* Card Content */
+.card-content {
+    text-align: center;
+    padding: 10px;
+    flex-grow: 1;
+}
+
+/* Card Title */
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Product Description */
+.card-content p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.0;
+}
+
+/* Buy Now Button */
+.buy-now-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;  /* Memberikan jarak pada tombol */
+}
+
+.buy-now-button:hover {
+    background-color: #0056b3;
+}
+
+/* Hover Effect for Card */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));  /* Menyesuaikan kartu di layar kecil */
+    }
+
+    .card {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .card-image {
+        height: 180px;
+    }
+
+    .buy-now-button {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}

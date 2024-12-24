@@ -1,0 +1,89 @@
+/* Login.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.login-card {
+    background: linear-gradient(135deg, #1a2a3a, #1d3b50);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    text-align: center;
+}
+
+.login-title {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #e0e0e0;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #b0b0b0;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #2e3b4e;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.input-icon {
+    color: #6c788f;
+    margin-right: 10px;
+}
+
+.input-field {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: none;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.input-field::placeholder {
+    color: #6c788f;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #0056b3, #003d80);
+}

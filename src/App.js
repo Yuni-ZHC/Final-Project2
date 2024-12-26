@@ -4,6 +4,8 @@ import Dashboard from '../src/Component/Dashboard';
 import Navbar from '../src/Component/Navbar';
 import Login from '../src/Component/Login';
 import Books from '../src/Component/Books';
+import Tambah from './Component/Tambah';
+import Edit from './Component/Edit';
 import './App.css';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
             <Route path="/Navbar" element={<Navbar />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Books" element={<Books />} />
+            <Route path="/Tambah" element={<Tambah />} />
+            <Route path="/Edit/:id" element={<Edit />} />
           </Routes>
         </div>
       </div>

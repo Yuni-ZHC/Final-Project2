@@ -30,11 +30,10 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
     justify-content: center;
 }
 
-/* Card Styling */
 /* Card Styling */
 .card {
     display: flex;
@@ -42,21 +41,19 @@
     background-color: rgba(255, 255, 255, 0.7); /* Transparan dengan latar putih */
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 240px;
-    height: 380px;
+    width: 50px;  /* Decrease card width */
+    height: 380px; /* Decrease card height */
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
-
 
 /* Card Image */
 .card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* Gambar memenuhi area tanpa distorsi */
-
+    width: 100%;  /* Ensure image covers the full width */
+    height: 2000px; /* Adjust image height */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
 }
-
 /* Card Content */
 .card-content {
     padding: 10px;
@@ -64,7 +61,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 /* Card Title */
@@ -73,14 +70,14 @@
     font-weight: bold;
     color: #0d47a1;
     text-align: center;
-    margin: 5px 0;
+    margin: 30px 0;
 }
 
 /* Card Text */
 .card-content p {
     font-size: 0.9rem;
     color: #555;
-    line-height: 1.2;
+    line-height: 1.0;
     margin: 0;
     text-align: center;
 }
@@ -94,7 +91,7 @@
     border-radius: 5px;
     font-size: 0.9rem;
     cursor: pointer;
-    margin-top: 10px; /* Tambahkan jarak di atas tombol */
+    margin-top: 10px; /* Space above the button */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -112,13 +109,10 @@
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .card {
-        width: 100%;
+        width: 50%;  /* Full width on smaller screens */
         height: auto;
     }
 
-    .card-image {
-        height: 200px;
-    }
 
     .buy-now-button {
         padding: 8px 12px;

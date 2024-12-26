@@ -45,4 +45,20 @@
   .dashboard {
     margin-top: 50px; /* Sesuaikan dengan tinggi navbar */
   }
+  .logout-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: darkred;
+  }
+  
+  
   

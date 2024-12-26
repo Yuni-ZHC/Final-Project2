@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,11 +12,12 @@ const Login = () => {
         // Handle login logic here
         console.log('Email:', email);
         console.log('Password:', password);
-        navigate('/books'); // Navigate to the books page after login
+        navigate('/dashboard'); // Navigate to the books page after login
     };
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: 'linear-gradient(to bottom, #000428, #004e92)' }}>
+            <Navbar />
             <form onSubmit={handleSubmit} style={{ 
                 width: '300px', 
                 padding: '20px', 

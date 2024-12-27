@@ -1,98 +1,100 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import '../Css/Tambah.css';  
-  
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import "../Css/Tambah.css"; // Ensure the correct CSS path
 
-const Tambah = () => {
-  const [image, setImage] = useState('');
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [rating, setRating] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
+function Tambah({ idAdmin }) {
+  const [tambah, settambah] = useState({
+    judulNovel: "",
+    penulisNovel: "",
+    ratingNovel: "",
+    deskripsiNovel: "",
+    hargaNovel: "",
+  });
+
   const navigate = useNavigate();
 
+  // Simulate dynamic input values and auto-submit the form
+  useEffect(() => {
+   
+    handleSubmit({ preventDefault: () => {} });
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    settambah({
+      ...tambah,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const newBook = { image, title, author, rating, description, price };
-    axios.post('http://localhost:3000/books', newBook)
-      .then(() => {
-        navigate.push('/');
+    if (e) e.preventDefault(); // Prevent the default form submission behavior if event is passed
+    axios
+      .post(`http://localhost:8080/api/data/tambah/${idAdmin}`, tambah)
+      .then((response) => {
+        Swal.fire({
+          icon: "success",
+          title: "Data berhasil ditambahkan!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/books"); // Navigate to books page after success
       })
-      .catch(error => console.error("Error adding book: ", error));
+      .catch((error) => {
+        console.error("Terjadi kesalahan saat mengirim data:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Gagal menambahkan data",
+          text: error.response ? error.response.data.message : "Terjadi kesalahan",
+        });
+      });
   };
 
   return (
-    <div className="add-book-container">
-      <div className="card">
-        <h1>Tambah Buku</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Gambar URL</label>
-            <input 
-              type="text" 
-              value={image} 
-              onChange={(e) => setImage(e.target.value)} 
-              required 
-            />
-          </div>
-          
-          <div className="form-group">
-            <label>Judul</label>
-            <input 
-              type="text" 
-              value={title} 
-              onChange={(e) => setTitle(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Penulis</label>
-            <input 
-              type="text" 
-              value={author} 
-              onChange={(e) => setAuthor(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Rating</label>
-            <input 
-              type="number" 
-              value={rating} 
-              onChange={(e) => setRating(e.target.value)} 
-              required 
-              min="0" max="5" step="0.1"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Deskripsi</label>
-            <textarea 
-              value={description} 
-              onChange={(e) => setDescription(e.target.value)} 
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Harga</label>
-            <input 
-              type="number" 
-              value={price} 
-              onChange={(e) => setPrice(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <button type="submit" className="btn">Tambah Buku</button>
-        </form>
-      </div>
+    <div className="main-content">
+      <h2>Tambah Novel</h2>
+      <form onSubmit={handleSubmit} className="form-container">
+        <input
+          type="text"
+          name="judulNovel"
+          placeholder="Judul"
+          value={tambah.judulNovel}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="penulisNovel"
+          placeholder="Penulis"
+          value={tambah.penulisNovel}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="ratingNovel"
+          placeholder="Rating"
+          value={tambah.ratingNovel}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="deskripsiNovel"
+          placeholder="Deskripsi"
+          value={tambah.deskripsiNovel}
+          onChange={handleChange}
+        />
+        <input
+          type="number"
+          name="hargaNovel"
+          placeholder="Harga"
+          value={tambah.hargaNovel}
+          onChange={handleChange}
+        />
+        <button type="submit">Tambah Novel</button>
+      </form>
     </div>
   );
-};
+}
 
 export default Tambah;

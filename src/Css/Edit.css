@@ -1,92 +1,104 @@
-/* Styling untuk Container Edit Buku */
-.edit-book-container {
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #1a1a3d, #593d70, #9c75a1);
+    color: #ffffff;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #0d47a1, #000000); /* Gradasi Dark Blue ke Biru */
-}
-
-/* Styling untuk Card */
-.card {
-    background-color: rgba(255, 255, 255, 0.7); /* Membuat background card transparan dengan opasitas 0.7 */
-    border-radius: 8px; /* Sudut card lebih bulat */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Bayangan lebih jelas */
-    padding: 30px; /* Memberikan ruang di dalam card */
+  }
+  
+  /* Centered Card */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
     width: 100%;
-    max-width: 500px; /* Lebar card maksimum */
-    margin: 0 auto;
-    position: relative;
-    backdrop-filter: blur(5px); /* Menambahkan blur di belakang card untuk menambah efek transparansi */
-}
-
-/* Styling untuk Heading */
-.card h1 {
+  }
+  
+  h2 {
     text-align: center;
     font-size: 24px;
-    color: #ffffff; /* Warna putih untuk heading */
     margin-bottom: 20px;
-}
-
-/* Styling untuk setiap form group */
-.form-group {
-    margin-bottom: 15px;
-}
-
-/* Styling untuk Label */
-.form-group label {
-    display: block;
-    font-size: 14px;
-    color: #f0f0f0; /* Warna label yang lebih terang */
-    text-align: left;
-    margin-bottom: 5px;
-}
-
-/* Styling untuk Input dan Textarea */
-.form-group input,
-.form-group textarea {
+    color: #fff;
+  }
+  
+  .form-container {
     width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #ddd; /* Border ringan pada input dan textarea */
-    margin-top: 5px;
-    background-color: rgba(255, 255, 255, 0.6); /* Latar belakang input dan textarea lebih transparan */
-}
-
-.form-group textarea {
-    resize: vertical;
-    height: 100px; /* Tinggi textarea */
-}
-
-/* Styling untuk Tombol */
-button[type="submit"] {
-    background-color: #4CAF50; /* Warna hijau untuk tombol */
-    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input {
+    background: rgba(255, 255, 255, 0.1);
     border: none;
+    color: #fff;
     padding: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    margin-top: 15px;
-    font-size: 16px;
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049; /* Warna hijau lebih gelap saat hover */
-}
-
-/* Styling untuk input focus */
-input:focus, textarea:focus {
-    border-color: #4CAF50; /* Border hijau saat fokus */
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background 0.3s, box-shadow 0.3s;
+  }
+  
+  input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
     outline: none;
-}
-
-/* Styling untuk Card di Responsif */
-@media (max-width: 768px) {
-    .card {
-        padding: 20px; /* Mengurangi padding card pada perangkat lebih kecil */
+  }
+  
+  input::placeholder {
+    color: #ccc;
+  }
+  
+  button {
+    background: #4e79a7;
+    border: none;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background: #3c5f7a;
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    background: #2c4861;
+    transform: scale(1);
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Make the card responsive */
+  @media (max-width: 500px) {
+    .main-content {
+      padding: 20px;
     }
-}
+  
+    input {
+      font-size: 12px;
+      padding: 10px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  

@@ -3,27 +3,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background: linear-gradient(to bottom, #0d47a1, #000000); /* Gradasi biru gelap ke hitam */
+    padding: 30px;
+    background-color: #0c1461;
     min-height: 100vh;
     color: white;
     text-align: center;
+    font-family: 'Arial', sans-serif; /* Gunakan font yang modern */
+    margin-top: 3000px;
 }
 
 /* Heading Style */
 .dashboard h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-size: 3rem; /* Ukuran font lebih besar */
+    font-weight: 700;
     margin-bottom: 15px;
-    color: #fff;
+    color: #ff6f61; /* Warna lebih cerah */
 }
 
 /* Subheading Style */
 .dashboard h4 {
     font-size: 1.2rem;
     margin-top: 0;
-    margin-bottom: 60px;
-    color: #b3e5fc;
+    margin-bottom: 40px;
+    color: #e0f7fa; /* Warna lebih lembut */
+    line-height: 1.5;
 }
 
 /* Card Container */
@@ -32,90 +35,157 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    max-width: 100%;
+    margin-top: 20px;
 }
 
 /* Card Styling */
 .card {
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.7); /* Transparan dengan latar putih */
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 50px;  /* Decrease card width */
-    height: 380px; /* Decrease card height */
+    background-color: rgba(250, 239, 239, 0.9); /* Background putih lebih solid */
+    border-radius: 20px; /* Border lebih bulat */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih halus dan besar */
+    width: 220px;  /* Ukuran lebar kartu */
+    height: auto; /* Kartu lebih fleksibel sesuai konten */
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    flex: 1 1 220px;
+    min-width: 220px;
+    max-width: 280px;
+    margin: 10px;
+    background: #f5f5f5; /* Background lembut */
 }
 
 /* Card Image */
-.card-image {
-    width: 100%;  /* Ensure image covers the full width */
-    height: 2000px; /* Adjust image height */
-    object-fit: cover; /* Ensure the image covers the area without distortion */
-}
+        .card img {
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto 10px; /* Jarak bawah gambar */
+        display: block;
+    
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f1f3f8;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .card p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .card button {
+    background: #ff725e;
+    border: none;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .card button:hover {
+    background: #ff5a4b;
+    transform: scale(1.05);
+  }
+  
+
 /* Card Content */
 .card-content {
-    padding: 10px;
+    padding: 15px;
     color: #333;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 /* Card Title */
 .card-content h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #0d47a1;
+    color: #f3f2f8; /* Warna merah muda cerah */
     text-align: center;
-    margin: 30px 0;
+    margin: 10px 0;
 }
 
 /* Card Text */
 .card-content p {
     font-size: 0.9rem;
-    color: #555;
-    line-height: 1.0;
+    color: #f8f1f1;
+    line-height: 1.5;
     margin: 0;
     text-align: center;
+    padding: 0 10px;
 }
 
 /* Buy Now Button */
 .buy-now-button {
-    background-color: #4CAF50;
+    background-color: #ff6f61;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    padding: 12px 18px;
+    border-radius: 30px; /* Tombol dengan sudut lebih bulat */
+    font-size: 1rem;
     cursor: pointer;
-    margin-top: 10px; /* Space above the button */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .buy-now-button:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
+    background-color: #e64a38; /* Warna tombol berubah saat hover */
+    transform: scale(1.1); /* Efek zoom saat hover */
 }
 
 /* Hover Effect for Card */
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-8px); /* Efek kartu naik */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Bayangan lebih besar saat hover */
+}
+
+/* Hover Effect for Image */
+.card:hover .card-image {
+    transform: scale(1.05); /* Efek zoom pada gambar saat hover */
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .card {
-        width: 50%;  /* Full width on smaller screens */
+        width: 100%;  /* Lebar kartu penuh pada layar lebih kecil */
         height: auto;
     }
 
+    .card-image {
+        height: 200px; /* Menyesuaikan ukuran gambar di layar kecil */
+    }
 
     .buy-now-button {
-        padding: 8px 12px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .card-content p {
         font-size: 0.8rem;
     }
 }

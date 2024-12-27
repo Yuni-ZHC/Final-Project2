@@ -1,89 +1,135 @@
-/* Login.css */
-
+/* Global Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(to right, #1a1a3d, #593d70, #9c75a1);
+    font-family: 'Arial', sans-serif;
     height: 100vh;
-}
-
-.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+  }
+
+  
+  /* Galaxy Card Styles */
+  .galaxy-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px;
     width: 100%;
-}
-
-.login-card {
-    background: linear-gradient(135deg, #1a2a3a, #1d3b50);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    width: 350px;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    color: #fff;
+    backdrop-filter: blur(10px);
+  }
+  
+  .card-title {
     text-align: center;
-}
-
-.login-title {
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: #e0e0e0;
-}
-
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.input-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-    color: #b0b0b0;
-}
-
-.input-wrapper {
+    margin-bottom: 30px;
+    color: #fff;
+    font-size: 24px;
+  }
+  
+  /* Input Group Styles */
+  .input-group {
     display: flex;
     align-items: center;
-    background-color: #2e3b4e;
-    border-radius: 5px;
-    padding: 8px;
-}
-
-.input-icon {
-    color: #6c788f;
-    margin-right: 10px;
-}
-
-.input-field {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: none;
-    color: #fff;
-    font-size: 1rem;
-}
-
-.input-field::placeholder {
-    color: #6c788f;
-}
-
-.login-button {
+    margin-bottom: 25px;  /* Increased margin between input groups */
+    border-radius: 8px;
+    overflow: hidden;
     width: 100%;
-    padding: 10px;
-    background: linear-gradient(135deg, #007BFF, #0056b3);
-    color: white;
+  }
+  
+  /* Input Field Styles */
+  .input-group-text {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
     border: none;
+    padding: 12px 10px;
+    width: 50px;  /* Icon size */
+  }
+  
+  .input-group input {
     border-radius: 5px;
-    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    padding: 15px 20px;  /* More padding to make the input field visually larger */
+    width: 100%;  /* Make input field expand across the available space */
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;  /* Ensures padding doesn’t affect width */
+  }
+  
+  .input-group input::placeholder {
+    color: #ccc;
+    font-style: italic;
+  }
+  
+  /* Focused input field */
+  .input-group input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #4e79a7;
+  }
+  
+  /* Password Toggle Button */
+.btn-outline-secondary {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 5px; /* Kurangi padding untuk memperkecil tombol */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: background 0.3s;
-}
-
-.login-button:hover {
-    background: linear-gradient(135deg, #0056b3, #003d80);
-}
+    transition: all 0.3s ease;
+    font-size: 14px; /* Ukuran font default */
+  }
+  
+  /* Ukuran ikon yang lebih kecil */
+  .btn-outline-secondary svg {
+    font-size: 13px; /* Sesuaikan ukuran ikon */
+  }
+  
+  /* Hover Effect */
+  .btn-outline-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Submit Button Styles */
+  button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #4e79a7;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #3c5f7a;
+  }
+  
+  /* Link Styles */
+  a {
+    color: #4e79a7;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Error Message Styling */
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Paragraph Styling */
+  p {
+    color: #ddd;
+  }
+  

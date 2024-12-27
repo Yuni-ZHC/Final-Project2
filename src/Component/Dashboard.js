@@ -12,6 +12,7 @@ import image8 from '../Image/canva-removebg-preview.png';
 import image9 from '../Image/angkasa-removebg-preview.png';
 import image10 from '../Image/alezra-removebg-preview.png';
 import image11 from '../Image/Arthur-removebg-preview.png';
+import image12 from '../Image/marveluna-removebg-preview.png';
 
 const Dashboard = () => {
   const books = [
@@ -82,7 +83,7 @@ const Dashboard = () => {
       id: 8,
       images: image8,
       judul: 'Eccedentesiast',
-      penulis: ' ItaKrn',
+      penulis: 'Ita Kurniawati',
       rating: '⭐⭐⭐⭐⭐',
       desc: 'Novel ini menceritakan tentang Canva Narendra, seorang remaja yang bercita-cita untuk bertemu dengan orang tuanya. ',
       price: 'Harga: Rp.99.000',
@@ -112,6 +113,15 @@ const Dashboard = () => {
       penulis: 'Thyfaa_hn',
       rating: '⭐⭐⭐⭐⭐',
       desc: 'Novel ini bercerita tentang Arthur Renaldi Agatha, pemimpin perkumpulan remaja Argos, yang mencintai Athena Carolyn Acacio dalam diam. ',
+      price: 'Harga: Rp.99.000',
+    },
+    {
+      id: 12,
+      images: image12,
+      judul: 'Marveluna',
+      penulis: 'Ita Kurniawati',
+      rating: '⭐⭐⭐⭐⭐',
+      desc: 'Novel ini bercerita tentang kehidupan 2 lelaki remaja kembar yang ditempa secara berbeda oleh orang tua mereka. ',
       price: 'Harga: Rp.99.000',
     },
   ];

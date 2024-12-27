@@ -18,7 +18,7 @@
   .table-container {
     margin-top: 60px; /* Menambahkan jarak lebih besar antara navbar dan tabel */
     border-radius: 10px;
-    background-color: #ffffff;
+    background: linear-gradient(to bottom,#1d2671, #c33764);
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
@@ -42,7 +42,7 @@
   
   th {
     background-color: #434943;
-    color: white;
+    color: rgb(248, 241, 241);
     font-weight: bold;
   }
   
@@ -75,7 +75,7 @@
   
   /* Styling untuk link "Tambah Buku" */
   a button {
-    background-color: #2196F3;
+    background: linear-gradient(to bottom, #2575fc, #6a11cb);
     margin-top: 20px;
     display: inline-block;
     text-align: center;
@@ -88,7 +88,7 @@
   }
   
   a button:hover {
-    background-color: #1e88e5;
+    background: linear-gradient(to bottom, #2575fc, #6a11cb);
   }
   
   /* Styling untuk group tombol Edit dan Delete */
@@ -100,10 +100,33 @@
   
   /* Mengubah background tombol Delete menjadi merah */
   button:nth-child(2) {
-    background-color: #f16726; /* Tombol Delete berwarna merah */
+    background: linear-gradient(to bottom, #2575fc, #6a11cb); /* Tombol Delete berwarna merah */
   }
   
-  button:nth-child(2):hover {
-    background-color: #e53935; /* Hover merah */
+  .add-book-button {
+    display: flex;
+    justify-content: flex-end; /* Memindahkan tombol ke kanan */
+    align-items: center;
+    margin-bottom: 20px;
   }
+  
+  .add-book-button h2 {
+    margin-right: auto; /* Tetap biarkan judul di kiri */
+  }
+  
+  .add-book-button button {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .add-book-button button:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+  }
+  
   

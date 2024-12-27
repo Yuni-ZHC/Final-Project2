@@ -1,119 +1,97 @@
-// src/components/EditBook.js
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import '../Css/Edit.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate, useParams } from "react-router-dom";
+// import "../Css/EditData.css";
 
-const Edit = () => {
-  const { id } = useParams();
+function Edit() {
+  const [formData, setFormData] = useState({
+    judulNovel: "",
+    penulisNovel: "",
+    ratingNovel: "",
+    deskripsiNovel: "",
+    hargaNovel: "",
+  });
+
   const navigate = useNavigate();
-  
-  const [image, setImage] = useState('');
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [rating, setRating] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
+  const { id } = useParams(); // Mengambil ID dari URL
 
-  // Fetch existing book data
   useEffect(() => {
-    console.log(id); // Tambahkan untuk memastikan ID yang diterima benar
-    axios.get(`http://localhost:3000/books/${id}`)
+    // Mengambil data berdasarkan ID
+    axios.get(`http://localhost:8080/api/data/getById/${id}`)
       .then(response => {
-        const { image, title, author, rating, description, price } = response.data;
-        setImage(image);
-        setTitle(title);
-        setAuthor(author);
-        setRating(rating);
-        setDescription(description);
-        setPrice(price);
+        setFormData(response.data); // Set data ke form
       })
-      .catch(error => console.error("Error fetching data: ", error));
+      .catch(error => {
+        console.error("Terjadi kesalahan saat mengambil data:", error);
+      });
   }, [id]);
-  
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedBook = { image, title, author, rating, description, price };
-    axios.put(`http://localhost:3000/books/${id}`, updatedBook)
-      .then(() => {
-        navigate('/books'); // Setelah berhasil, kembali ke halaman utama
+    axios.put(`http://localhost:8080/api/data/editById/${id}`, formData)
+      .then(response => {
+        Swal.fire({
+          icon: "success",
+          title: "Data berhasil diperbarui",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        navigate("/data"); // Navigasi ke dashboard setelah edit
       })
-      .catch(error => console.error("Error updating book: ", error));
+      .catch(error => {
+        console.error("Terjadi kesalahan saat memperbarui data:", error);
+      });
   };
 
   return (
-    <div className="edit-book-container">
-      <div className="card">
-        <h1>Edit Buku</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Gambar URL</label>
-            <input 
-              type="text" 
-              value={image} 
-              onChange={(e) => setImage(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Judul:</label>
-            <input 
-              type="text" 
-              value={title} 
-              onChange={(e) => setTitle(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Penulis</label>
-            <input 
-              type="text" 
-              value={author} 
-              onChange={(e) => setAuthor(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Rating</label>
-            <input 
-              type="number" 
-              value={rating} 
-              onChange={(e) => setRating(e.target.value)} 
-              required 
-              min="0" 
-              max="5" 
-              step="0.1"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Deskripsi</label>
-            <textarea 
-              value={description} 
-              onChange={(e) => setDescription(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Harga</label>
-            <input 
-              type="number" 
-              value={price} 
-              onChange={(e) => setPrice(e.target.value)} 
-              required 
-            />
-          </div>
-
-          <button type="submit" className="btn">Simpan</button>
+      <div className="main-content">
+        <h2>Edit Data</h2>
+        <form onSubmit={handleSubmit} className="form-container">
+          <input
+            type="text"
+            name="judulNovel"
+            placeholder="Judul"
+            value={formData.judulNovel}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="penulisNovel"
+            placeholder="Penulis"
+            value={formData.penulisNovel}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="ratingNovel"
+            placeholder="Rating"
+            value={formData.ratingNovel}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="deskripsiNovel"
+            placeholder="Deskripsi"
+            value={formData.deskripsiNovel}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="hargaNovel"
+            placeholder="Harga"
+            value={formData.hargaNovel}
+            onChange={handleChange}
+          />
+          <button type="submit">Simpan</button>
         </form>
       </div>
-    </div>
   );
-};
+}
 
 export default Edit;

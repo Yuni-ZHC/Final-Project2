@@ -1,144 +1,133 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 import '../Css/Books.css';
-import { Link } from 'react-router-dom';
-import image1 from '../Image/mahen-removebg-preview.png';
-import image2 from '../Image/skiforzonia-removebg-preview.png';
-import image3 from '../Image/hujan-removebg-preview.png';
-import image4 from '../Image/asavella-removebg-preview.png';
-import image5 from '../Image/aliza-removebg-preview.png';
-import image6 from '../Image/00-removebg-preview (1).png';
-import image7 from '../Image/telukalaska-removebg-preview.png';
-import image8 from '../Image/canva-removebg-preview.png';
-import image9 from '../Image/angkasa-removebg-preview.png';
-import image10 from '../Image/alezra-removebg-preview.png';
-import image11 from '../Image/Arthur-removebg-preview.png';
-
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Books = () => {
-  const Books = [
-    {
-      id: 1,
-      images: image1,
-      judul: 'Mahen Algrafa',
-      penulis: 'Kusdina Ain',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini menceritakan tentang perjalanan hidup Mahen,seorang anak laki-laki yang ditinggal ibunya sejak kecil',
-      price: 'Rp.99.000',
-    },
-    {
-      id: 2,
-      images: image2,
-      judul: 'Skizofrenia',
-      penulis: 'Disadisso',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini menjelaskan tentang tata cara penegakan diagnosis,penatalaksanaan,dan pemahaman tentang perjalanan penyakit pada skizofrenia.',
-      price: 'Rp.99.000',
-    },
-    {
-      id: 3,
-      images: image3,
-      judul: 'Hujan',
-      penulis: 'Tere Liye',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini menceritakan kisah Lail,seorang gadis yang menjadi yatim piatu akibat bencana alam.',
-      price: 'Rp.99.000',
-    },
-    {
-      id: 4,
-      images: image4,
-      judul: 'Asavella',
-      penulis: 'Alfida Nurhayati Adiana ',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini menceritakan tentang perjalanan hidup seorang remaja bernama Asavella yang mengalami berbagai kejadian menyakitkan. ',
-      price: 'Harga: Rp.90.000',
-    },
-    {
-      id: 5,
-      images: image5,
-      judul: 'Santri Pilihan Bunda',
-      penulis: 'Falensia Salsyabila',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini bercerita tentang Aliza Shaqueena Iqala, seorang mahasiswi yang dijodohkan dengan Kinaan Ozama El Fatih, seorang santri di pondok pesantren terkenal.',
-      price: 'Harga: Rp.99.000',
-    },
-    {
-      id: 6,
-      images: image6,
-      judul: '00.00',
-      penulis: 'Anugrah Ameylia Falensia',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: ' Novel ini menceritakan kisah seorang gadis remaja bernama Lengkara Putri Langit yang mengalami berbagai masalah dalam hidupnya.',
-      price: 'Harga: Rp.85.000',
-    },
-    {
-      id: 7,
-      images: image7,
-      judul: 'Teluk Alaska',
-      penulis: 'Eka Aryani',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini bercerita tentang kisah romansa, persahabatan, dan perundungan yang dialami oleh dua tokoh utama, yaitu Anastasia Mysha dan Alister Reygan. ',
-      price: 'Harga: Rp.88.000',
-    },
-    {
-      id: 8,
-      images: image8,
-      judul: 'Eccedentesiast',
-      penulis: ' ItaKrn',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini menceritakan tentang Canva Narendra, seorang remaja yang bercita-cita untuk bertemu dengan orang tuanya. ',
-      price: 'Harga: Rp.99.000',
-    },
-    {
-      id: 9,
-      images: image9,
-      judul: 'Dia Angkasa',
-      penulis: 'Nurwina Sari ',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini menceritakan kisah cinta antara Angkasa Naufal Merapi dan Aurelani Aurora. ',
-      price: 'Harga: Rp.99.000',
-    },
-    {
-      id: 10,
-      images: image10,
-      judul: 'Alezra',
-      penulis: 'Kusdina Ain',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini bercerita tentang Ayyara, seorang gadis SMA yang dijodohkan dengan Alezra Elvando, ketua geng motor Egrios. ',
-      price: 'Harga: Rp.99.000',
-    },
-    {
-      id: 11,
-      images: image11,
-      judul: 'He is My Boyfriend',
-      penulis: 'Thyfaa_hn',
-      rating: '⭐⭐⭐⭐⭐',
-      desc: 'Novel ini bercerita tentang Arthur Renaldi Agatha, pemimpin perkumpulan remaja Argos, yang mencintai Athena Carolyn Acacio dalam diam. ',
-      price: 'Harga: Rp.99.000',
-    },
-  ];
+  const [produk, setProduk] = useState([]);
+  const navigate = useNavigate();
+  const [newProduct, setNewProduct] = useState({ judulNovel: '', hargaNovel: '', deskripsiNovel: '', penulisNovel: '', ratingNovel: '' });
 
-  const [books, setBooks] = useState(Books);
+  useEffect(() => {
+    // Fetch produk dari API
+    fetch('http://localhost:8080/api/data/produk')
+      .then((response) => response.json())
+      .then((data) => {
+        setProduk(data); // Simpan data ke dalam state produk
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const handleDeleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
+    // Kirim permintaan DELETE ke server
+    fetch(`http://localhost:8080/api/data/delete/${id}`, {
+      method: 'DELETE', // Menggunakan metode DELETE
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Jika penghapusan berhasil, hapus buku dari state produk
+          setProduk(produk.filter((book) => book.id !== id));
+        } else {
+          console.error('Failed to delete the book');
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting book:", error);
+      });
+  };
+
+  const handleAddProduct = async () => {
+    if (newProduct.judulNovel && newProduct.hargaNovel && newProduct.deskripsiNovel && newProduct.penulisNovel && newProduct.ratingNovel) {
+      // Fetch the admin ID and token from localStorage (assuming it's stored)
+      const adminData = JSON.parse(localStorage.getItem("adminData"));
+      const idAdmin = adminData?.id;
+      const token = adminData?.token;
+      
+      if (!idAdmin || !token) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Admin Tidak Ditemukan!',
+          text: 'Tidak ada informasi admin atau token yang ditemukan.',
+          confirmButtonColor: '#9B4D96',
+        });
+        return;
+      }
+
+      const newProductData = {
+        ...newProduct,
+        idAdmin,
+        hargaNovel: parseFloat(newProduct.hargaNovel),
+        ratingNovel: parseFloat(newProduct.ratingNovel)
+      };
+
+      // Send POST request to backend
+      try {
+        const response = await fetch(`http://localhost:8080/api/data/tambah/${idAdmin}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `jwt ${token}`
+          },
+          body: JSON.stringify(newProductData),
+        });
+
+        if (response.ok) {
+          const savedProduct = await response.json();
+          
+          // Show success alert
+          Swal.fire({
+            icon: 'success',
+            title: 'Produk Ditambahkan!',
+            text: `Produk ${savedProduct.judulNovel} berhasil ditambahkan.`,
+            confirmButtonColor: '#9B4D96',
+          }).then(() => {
+            navigate("/product-list"); // Navigate after successful submission
+          });
+        } else {
+          // Show error alert if the response is not OK
+          Swal.fire({
+            icon: 'error',
+            title: 'Gagal Menambahkan Produk',
+            text: 'Terjadi kesalahan saat menambahkan produk.',
+            confirmButtonColor: '#9B4D96',
+          });
+        }
+      } catch (error) {
+        // Handle network or other errors
+        Swal.fire({
+          icon: 'error',
+          title: 'Kesalahan Jaringan',
+          text: 'Gagal terhubung ke server.',
+          confirmButtonColor: '#9B4D96',
+        });
+      }
+    } else {
+      // Show warning alert if some fields are empty
+      Swal.fire({
+        icon: 'warning',
+        title: 'Harap Isi Semua Kolom!',
+        text: 'Silakan isi semua kolom untuk menambahkan produk.',
+        confirmButtonColor: '#9B4D96',
+      });
+    }
   };
 
   return (
     <div className="books">
       <Navbar />
       <div className="table-container">
-        {/* Pindahkan tombol "Tambah Buku" ke atas tabel */}
-      <div className="add-book-button">
-        <Link to="/Tambah">
-          <button>Tambah Buku</button>
-        </Link>
-      </div>
+        <div className="add-book-button">
+          <h2>Daftar Produk</h2>
+          <button onClick={handleAddProduct}>Tambah Buku</button>
+        </div>
         <table>
           <thead>
             <tr>
               <th>No</th>
-              <th>Gambar</th>
+              <th>Judul</th>
               <th>Penulis</th>
               <th>Rating</th>
               <th>Deskripsi</th>
@@ -147,29 +136,22 @@ const Books = () => {
             </tr>
           </thead>
           <tbody>
-            {books.map((book, index) => (
+            {produk.map((book, index) => (
               <tr key={book.id}>
                 <td>{index + 1}</td>
+                <td>{book.judulNovel}</td>
+                <td>{book.penulisNovel}</td>
+                <td>{book.ratingNovel}</td>
+                <td>{book.deskripsiNovel}</td>
+                <td>{book.hargaNovel}</td>
                 <td>
-                  <img
-                    src={book.images}
-                    alt={book.judul}
-                    style={{ width: '50px', height: 'auto' }}
-                  />
+                  <div className="button-group">
+                    <Link to={`/Edit/${book.id}`}>
+                      <button>Edit</button>
+                    </Link>
+                    <button onClick={() => handleDeleteBook(book.id)}>Delete</button>
+                  </div>
                 </td>
-                <td>{book.penulis}</td>
-                <td>{book.rating}</td>
-                <td>{book.desc}</td>
-                <td>{book.price}</td>
-                <td>
-                <div className="button-group">
-                  <Link to={`/Edit/${book.id}`}>
-                    <button>Edit</button>
-                  </Link>
-                  <button onClick={() => handleDeleteBook(book.id)}>Delete</button>
-                </div>
-              </td>
-
               </tr>
             ))}
           </tbody>

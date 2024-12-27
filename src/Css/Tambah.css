@@ -1,92 +1,78 @@
-/* Styling untuk Container Tambah Buku */
-.add-book-container {
+/* Tambah.css */
+
+/* Background Galaxy */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #1a1a47, #3b3b6b, #5a5a8a);
+    color: white;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #0d47a1, #000000); /* Gradasi Dark Blue ke Hitam */
-}
-
-/* Styling untuk Card */
-.card {
-    background-color: rgba(255, 255, 255, 0.4); /* Membuat background card lebih transparan (0.3) */
-    border-radius: 9px; /* Mengurangi radius agar lebih kompak */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lebih jelas */
-    padding: 40px; /* Padding agar card lebih kecil */
-    width: 100%;
-    max-width: 500px; /* Menurunkan ukuran maksimal card */
-    margin: 0 auto;
-    position: relative; /* Untuk memastikan posisi elemen dalam card tidak terhalang */
-}
-
-
-/* Styling untuk Heading */
-.card h1 {
+  }
+  
+  /* Main Content */
+  .main-content {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     text-align: center;
-    font-size: 20px; /* Mengurangi ukuran font untuk heading */
-    color: #f5e9e9;
-    margin-bottom: 15px; /* Mengurangi jarak bawah heading */
-}
-
-/* Styling untuk setiap form group */
-.form-group {
-    margin-bottom: 8px; /* Mengurangi jarak antar form group */
-}
-
-/* Styling untuk Label */
-.form-group label {
-    display: block;           /* Menjadikan label sebagai block element */
-    font-size: 14px;          /* Ukuran font untuk label */
-    color: #d4d3d3;           /* Warna label */
-    text-align: left;         /* Menyelaraskan label ke kiri */
-    margin-bottom: 5px;       /* Memberikan jarak antara label dan input */
-}
-
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 5px; /* Mengurangi padding input dan textarea */
-    font-size: 14px;
-    border-radius: 6px;
-    border: 2px ;
-    margin-top: 5px;
-}
-
-.form-group textarea {
-    resize: vertical;
-    height: 20px; /* Menurunkan tinggi textarea agar tidak terlalu besar */
-}
-
-/* Styling untuk tombol */
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px; /* Menambahkan padding agar tombol lebih besar */
+    width: 400px;
+  }
+  
+  /* Heading */
+  .main-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #ffccff;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Form Container */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Input Fields */
+  .form-container input {
+    padding: 10px;
+    border: 2px solid #665d8f;
     border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+  }
+  
+  .form-container input::placeholder {
+    color: #bdbdbd;
+  }
+  
+  /* Submit Button */
+  .form-container button {
+    background: linear-gradient(to right,#1a1a47, #3b3b6b, #5a5a8a);
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 100%; /* Tombol mengambil lebar penuh */
-    margin-top: 10px; /* Memberikan jarak atas pada tombol */
-    font-size: 12px; /* Menambah ukuran font untuk tombol */
-    z-index: 2; /* Pastikan tombol berada di atas elemen lainnya */
-}
-
-button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-/* Styling untuk input focus */
-input:focus, textarea:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-/* Styling untuk Card di Responsif */
-@media (max-width: 758px) {
-    .card {
-        padding: 40px; /* Mengurangi padding card pada perangkat lebih kecil */
-    }
-}
+    box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .form-container button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 94, 120, 0.5);
+  }
+  
+  .form-container button:active {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+  }
+  

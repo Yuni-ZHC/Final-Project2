@@ -21,6 +21,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
 
             {/* Private Routes (Only accessible if logged in) */}
             <Route 
@@ -36,8 +37,7 @@ function App() {
               element={<PrivateRoutes><Edit /></PrivateRoutes>} 
             />
 
-            {/* Catch-all Route (404) */}
-            <Route path="*" element={<Navigate to="/login" />} />
+            
           </Routes>
         </div>
       </div>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Navbar1 from "./Navbar1";
 import { useNavigate } from "react-router-dom";
-import "../Css/Tambah.css"; // Ensure the correct CSS path
+import "../Css/Tambah.css"; // Pastikan path CSS benar
 
 function Tambah({ idAdmin }) {
   const [tambah, settambah] = useState({
@@ -15,12 +16,6 @@ function Tambah({ idAdmin }) {
 
   const navigate = useNavigate();
 
-  // Simulate dynamic input values and auto-submit the form
-  useEffect(() => {
-   
-    handleSubmit({ preventDefault: () => {} });
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     settambah({
@@ -30,9 +25,27 @@ function Tambah({ idAdmin }) {
   };
 
   const handleSubmit = (e) => {
-    if (e) e.preventDefault(); // Prevent the default form submission behavior if event is passed
+    e.preventDefault();
+
+    // Validasi jika idAdmin tidak ada
+    if (!idAdmin) {
+      Swal.fire({
+        icon: "error",
+        title: "ID Admin tidak ditemukan",
+        text: "Pastikan Anda login sebagai admin.",
+      });
+      return;
+    }
+
+    // Kirim data ke server
     axios
-      .post(`http://localhost:8080/api/data/tambah/${idAdmin}`, tambah)
+      .post(`http://localhost:8080/api/data/tambah/${idAdmin}`, {
+        judulNovel: tambah.judulNovel,
+        deskripsiNovel: tambah.deskripsiNovel,
+        ratingNovel: tambah.ratingNovel,
+        hargaNovel: parseFloat(tambah.hargaNovel), // Pastikan harga dikirim sebagai angka
+        penulisNovel: tambah.penulisNovel,
+      })
       .then((response) => {
         Swal.fire({
           icon: "success",
@@ -40,7 +53,7 @@ function Tambah({ idAdmin }) {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/books"); // Navigate to books page after success
+        navigate("/books"); // Redirect ke halaman books
       })
       .catch((error) => {
         console.error("Terjadi kesalahan saat mengirim data:", error);
@@ -54,6 +67,7 @@ function Tambah({ idAdmin }) {
 
   return (
     <div className="main-content">
+      <Navbar1 />
       <h2>Tambah Novel</h2>
       <form onSubmit={handleSubmit} className="form-container">
         <input
@@ -62,6 +76,7 @@ function Tambah({ idAdmin }) {
           placeholder="Judul"
           value={tambah.judulNovel}
           onChange={handleChange}
+          required
         />
         <input
           type="text"
@@ -69,6 +84,7 @@ function Tambah({ idAdmin }) {
           placeholder="Penulis"
           value={tambah.penulisNovel}
           onChange={handleChange}
+          required
         />
         <input
           type="text"
@@ -76,6 +92,7 @@ function Tambah({ idAdmin }) {
           placeholder="Rating"
           value={tambah.ratingNovel}
           onChange={handleChange}
+          required
         />
         <input
           type="text"
@@ -83,6 +100,7 @@ function Tambah({ idAdmin }) {
           placeholder="Deskripsi"
           value={tambah.deskripsiNovel}
           onChange={handleChange}
+          required
         />
         <input
           type="number"
@@ -90,6 +108,7 @@ function Tambah({ idAdmin }) {
           placeholder="Harga"
           value={tambah.hargaNovel}
           onChange={handleChange}
+          required
         />
         <button type="submit">Tambah Novel</button>
       </form>

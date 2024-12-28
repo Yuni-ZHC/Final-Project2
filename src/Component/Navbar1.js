@@ -23,7 +23,9 @@ const Navbar = ({ onLogout }) => {
         localStorage.removeItem('token');
         
         // Call onLogout function to trigger any additional logout logic
-        onLogout();
+        if (onLogout) {
+          onLogout();
+        }
 
         // Redirect user to login page after logout
         navigate('/login');
@@ -44,8 +46,10 @@ const Navbar = ({ onLogout }) => {
         <h1>Book Store Yuni</h1>
       </div>
       <ul className="navbar-menu">
-        <li><Link to="/dashboard">Home</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/books">Books</Link></li>
+        <li>
+          <button className="logout-button" onClick={handleLogout}>Logout</button>
+        </li>
       </ul>
     </nav>
   );

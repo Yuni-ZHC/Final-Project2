@@ -1,14 +1,26 @@
-/* Styling untuk Container Halaman Buku */
+/* body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #1d2671, #c33764); /* Background gradient on body */
+ */
+
 .books {
-    font-family: 'Arial', sans-serif;
-    padding: 20px;
-    background-color: #f4f7fc;
-    min-height: 100vh;
-  }
+  font-family: 'Arial', sans-serif;
+  padding: 40px;
+  background: linear-gradient(to bottom, #1d2671, #c33764);
+  min-height: 200vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
   
   /* Styling untuk Navbar */
   .navbar {
-    background: linear-gradient(to bottom, #0d47a1, #000000);
+    background-color: #0d47a1;
     color: white;
     padding: 10px;
     text-align: center;
@@ -18,7 +30,7 @@
   .table-container {
     margin-top: 60px; /* Menambahkan jarak lebih besar antara navbar dan tabel */
     border-radius: 10px;
-    background: linear-gradient(to bottom,#1d2671, #c33764);
+    background-color:#333764;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
@@ -42,12 +54,12 @@
   
   th {
     background-color: #434943;
-    color: rgb(248, 241, 241);
+    color: rgb(224, 217, 217);
     font-weight: bold;
   }
   
   tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background: linear-gradient(to bottom,#1d2671, #c33764);
   }
   
   /* Styling untuk Gambar */

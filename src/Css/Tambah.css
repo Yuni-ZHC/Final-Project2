@@ -2,77 +2,77 @@
 
 /* Background Galaxy */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #1a1a47, #3b3b6b, #5a5a8a);
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Main Content */
-  .main-content {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    width: 400px;
-  }
-  
-  /* Heading */
-  .main-content h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #ffccff;
-    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
-  }
-  
-  /* Form Container */
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  /* Input Fields */
-  .form-container input {
-    padding: 10px;
-    border: 2px solid #665d8f;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 16px;
-  }
-  
-  .form-container input::placeholder {
-    color: #bdbdbd;
-  }
-  
-  /* Submit Button */
-  .form-container button {
-    background: linear-gradient(to right,#1a1a47, #3b3b6b, #5a5a8a);
-    border: none;
-    border-radius: 5px;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .form-container button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(255, 94, 120, 0.5);
-  }
-  
-  .form-container button:active {
-    transform: scale(1);
-    box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, #1a1a47, #3b3b6b, #5a5a8a);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Menjaga konten berada di tengah secara vertikal */
+  text-align: center;
+}
+
+/* Main Content */
+.main-content {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 400px;
+}
+
+/* Heading */
+.main-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #ffccff;
+  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input Fields */
+.form-container input {
+  padding: 10px;
+  border: 2px solid #665d8f;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+}
+
+.form-container input::placeholder {
+  color: #bdbdbd;
+}
+
+/* Submit Button */
+.form-container button {
+  background: linear-gradient(to right,#1a1a47, #3b3b6b, #5a5a8a);
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.form-container button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 94, 120, 0.5);
+}
+
+.form-container button:active {
+  transform: scale(1);
+  box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+}

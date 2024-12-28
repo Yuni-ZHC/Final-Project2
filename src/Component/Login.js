@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faKey,
-  faEye,
-  faEyeSlash,
-} from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
-import Swal from "sweetalert2";
-import '../Css/Login.css'; 
+import { faKey, faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
+import '../Css/Login.css'; // Import custom CSS
+import axios from 'axios';
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
-function Login() {
-  const [showPassword, setShowPassword] = useState(false);
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate(); // Initialize navigate function
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -21,70 +20,57 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
-    const Logindata = {
-      email: email.trim(), // Hapus spasi tambahan pada email
-      password: password,  // Pastikan password sesuai
-    };
-  
     try {
-      const response = await axios.post('http://localhost:8080/api/login', Logindata, {
-        headers: {
-          'Content-Type': 'application/json', // Pastikan header sesuai
-        },
+      const loginRequest = { email, password };
+      const response = await axios.post("http://localhost:8080/api/login", loginRequest);
+
+      // Assuming the response contains the token and user data
+      const { token, data } = response.data;
+
+      // Save token to localStorage
+      localStorage.setItem("authToken", token);
+
+      // Optionally save user data
+      localStorage.setItem("adminData", JSON.stringify(data));
+
+      // Show success alert using SweetAlert
+      Swal.fire({
+        title: 'Login Successful!',
+        text: 'You have logged in successfully.',
+        icon: 'success',
+        confirmButtonText: 'Ok',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          console.log("Navigating to /books");
+          // Redirect to the 'books' page after successful login
+          navigate("/books"); 
+        }
       });
-  
-      if (response.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Login Successful",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-  
-        // Redirect to Books page
-        setTimeout(() => {
-          window.location.href = "/Books";
-        }, 1000);
-  
-        // Save data to localStorage
-        const { id, role, token } = response.data.data;
-        localStorage.setItem("id", id);
-        localStorage.setItem("role", role);
-        localStorage.setItem("token", token);
-      }
+
     } catch (error) {
-      // Tampilkan error berdasarkan status response backend
+      // Handle errors
       if (error.response && error.response.status === 401) {
-        Swal.fire({
-          icon: "error",
-          title: "Invalid Email or Password",
-        });
+        setErrorMessage("Invalid email or password.");
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Something went wrong!",
-          text: error.message,
-        });
+        setErrorMessage("An error occurred. Please try again later.");
       }
-      console.error("Login error:", error.response || error.message);
     }
   };
-  
+
   return (
-    <div className="container">
-      <div className="card galaxy-card">
-        <h2 className="card-title">Login</h2>
+    <div className="login-container">
+      <div className="login-card">
+        <h3 className="login-card-title">Welcome Back!</h3>
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <form onSubmit={handleLogin}>
-          {/* Email Field */}
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email</label>
+          <div className="input-group-wrapper">
+            <label htmlFor="email" className="input-label">Email</label>
             <div className="input-group">
-              <span className="input-group-text"><FontAwesomeIcon icon={faEnvelope} /></span>
+              <span className="input-group-icon"><FontAwesomeIcon icon={faUser} /></span>
               <input
                 type="email"
                 id="email"
-                className="form-control"
+                className="input-field"
                 placeholder="Email"
                 required
                 value={email}
@@ -92,16 +78,14 @@ function Login() {
               />
             </div>
           </div>
-
-          {/* Password Field */}
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+          <div className="input-group-wrapper">
+            <label htmlFor="password" className="input-label">Password</label>
             <div className="input-group">
-              <span className="input-group-text"><FontAwesomeIcon icon={faKey} /></span>
+              <span className="input-group-icon"><FontAwesomeIcon icon={faKey} className="small-icon" /></span>
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="form-control"
+                className="input-field"
                 placeholder="Password"
                 required
                 value={password}
@@ -109,25 +93,20 @@ function Login() {
               />
               <button
                 type="button"
-                className="btn btn-outline-secondary"
+                className="password-toggle-btn"
                 onClick={togglePasswordVisibility}
               >
-                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="small-icon" />
               </button>
             </div>
           </div>
-
-          {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-100 mb-3">Login</button>
-
-          <p className="text-center">
-            Don't have an account?{" "}
-            <a href="/register" className="text-primary">Sign up now</a>
-          </p>
+          <div className="btn-container">
+            <button className="submit-btn" type="submit">Login</button>
+          </div>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default Login;

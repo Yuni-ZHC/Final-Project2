@@ -81,7 +81,7 @@ function Register() {
   };
 
   return (
-    <div className="container">
+    
       <div className="card">
         <h2 className="card-title">Register</h2>
         {errorMessage && (
@@ -124,38 +124,38 @@ function Register() {
 
           {/* Password Field */}
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <div className="input-group">
-              <span className="input-group-text"><FontAwesomeIcon icon={faKey} /></span>
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                className="form-control"
-                placeholder="Password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button
-                type="button"
-                className="btn btn-outline-secondary"
-                onClick={togglePasswordVisibility}
-              >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-              </button>
-            </div>
+          <label htmlFor="password" className="form-label">Password</label>
+          <div className="input-group">
+            <span className="input-group-text"><FontAwesomeIcon icon={faKey} /></span>
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              className="form-control"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={togglePasswordVisibility}
+            >
+              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+            </button>
           </div>
+        </div>
 
           {/* Submit Button */}
           <button type="submit" className="btn btn-primary w-100 mb-3">Register</button>
 
           <p className="text-center">
             Sudah punya akun?{" "}
-            <a href="/" className="text-primary">Masuk</a>
+            <a href="/login" className="text-primary">Masuk</a>
           </p>
         </form>
       </div>
-    </div>
+   
   );
 }
 

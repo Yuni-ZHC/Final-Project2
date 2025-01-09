@@ -121,3 +121,66 @@
     text-align: center;
     margin-top: 15px;
 }
+
+/* Responsive Design */
+
+/* Tablet screens and smaller */
+@media (max-width: 768px) {
+    .login-card {
+        width: 85%;
+        padding: 20px; /* Reduced padding for smaller screens */
+    }
+
+    .login-card-title {
+        font-size: 1.8rem; /* Slightly smaller title font */
+    }
+
+    .input-label {
+        font-size: 0.9rem; /* Smaller label font */
+    }
+
+    .input-field {
+        font-size: 0.95rem; /* Slightly smaller input field font */
+        padding: 10px;
+    }
+
+    .submit-btn {
+        padding: 12px; /* Smaller padding for buttons */
+        font-size: 1rem; /* Smaller font size for buttons */
+    }
+}
+
+/* Mobile screens and smaller */
+@media (max-width: 480px) {
+    .login-card {
+        width: 90%;
+        padding: 15px; /* Further reduced padding */
+    }
+
+    .login-card-title {
+        font-size: 1.6rem; /* Smaller title font */
+    }
+
+    .input-label {
+        font-size: 0.85rem; /* Smaller label font */
+    }
+
+    .input-group {
+        padding: 8px; /* Adjusted padding */
+    }
+
+    .input-field {
+        font-size: 0.9rem; /* Smaller input font */
+        padding: 8px; /* Smaller padding */
+    }
+
+    .submit-btn {
+        padding: 10px; /* Reduced padding for buttons */
+        font-size: 0.9rem; /* Smaller font size for buttons */
+    }
+
+    .error-message {
+        font-size: 0.9rem; /* Smaller error message text */
+        padding: 10px; /* Adjust padding */
+    }
+}

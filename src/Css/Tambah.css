@@ -21,7 +21,8 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   text-align: center;
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
 }
 
 /* Heading */
@@ -75,4 +76,47 @@ body {
 .form-container button:active {
   transform: scale(1);
   box-shadow: 0 4px 10px rgba(255, 94, 120, 0.3);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .main-content {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .main-content h2 {
+    font-size: 24px;
+  }
+
+  .form-container input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .form-container button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .main-content h2 {
+    font-size: 20px;
+  }
+
+  .form-container input {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .form-container button {
+    font-size: 12px;
+    padding: 8px;
+  }
 }

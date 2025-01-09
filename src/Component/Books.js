@@ -3,38 +3,38 @@ import Navbar1 from './Navbar1';
 import '../Css/Books.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import axios from 'axios'; // Import Axios
+
+const API_URL = "http://localhost:8080/api/data"; // Default API base URL
 
 const Books = () => {
   const [produk, setProduk] = useState([]);
-  const navigate = useNavigate(); // Use navigate hook
-  const [newProduct, setNewProduct] = useState({ judulNovel: '', hargaNovel: '', deskripsiNovel: '', penulisNovel: '', ratingNovel: '' });
-
-  // Fetch admin data from localStorage
+  const navigate = useNavigate();
   const adminData = JSON.parse(localStorage.getItem("adminData"));
   const idAdmin = adminData ? adminData.id : null; // Get the admin's ID
 
   useEffect(() => {
-    // Only fetch produk if idAdmin exists
-    if (idAdmin) {
-      // Fetch produk based on the admin's ID
-      fetch(`http://localhost:8080/api/data/getAllByAdmin/${idAdmin}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.length === 0) {
+    // Fetch produk menggunakan Axios
+    const fetchProduk = async () => {
+      if (idAdmin) {
+        try {
+          const response = await axios.get(`${API_URL}/getAllByAdmin/${idAdmin}`);
+          if (response.data.length === 0) {
             Swal.fire("No products found", "This admin has no products.", "info");
           } else {
-            setProduk(data); // Set the fetched produk to state
+            setProduk(response.data);
           }
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error("Error fetching data:", error);
           Swal.fire("Error", "An error occurred while fetching the products.", "error");
-        });
-    }
-  }, [idAdmin]); // Fetch data whenever the idAdmin changes
+        }
+      }
+    };
 
-  const handleDeleteBook = (id) => {
-    // Confirm deletion
+    fetchProduk();
+  }, [idAdmin]);
+
+  const handleDeleteBook = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: 'Do you want to delete this product?',
@@ -42,33 +42,37 @@ const Books = () => {
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'Cancel'
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        // Send DELETE request to server
-        fetch(`http://localhost:8080/api/data/delete/${id}`, {
-          method: 'DELETE', // Using DELETE method
-        })
-          .then((response) => {
-            if (response.ok) {
-              // If delete successful, remove the product from state
-              setProduk(produk.filter((book) => book.id !== id));
-              Swal.fire("Deleted!", "The product has been deleted.", "success");
-            } else {
-              console.error('Failed to delete the book');
-              Swal.fire("Failed!", "There was an issue deleting the product.", "error");
-            }
-          })
-          .catch((error) => {
-            console.error("Error deleting book:", error);
-            Swal.fire("Error", "An error occurred while deleting the product.", "error");
-          });
+        try {
+          await axios.delete(`${API_URL}/delete/${id}`);
+          setProduk(produk.filter((book) => book.id !== id));
+          Swal.fire("Deleted!", "The product has been deleted.", "success");
+        } catch (error) {
+          console.error("Error deleting book:", error);
+          Swal.fire("Error", "An error occurred while deleting the product.", "error");
+        }
       }
     });
   };
 
   const handleAddProduct = () => {
-    // Navigate to the "Tambah Buku" page when the button is clicked
     navigate("/tambah");
+  };
+
+  const handleEditBook = async (id, updatedData) => {
+    try {
+      const response = await axios.put(`${API_URL}/editById/${id}`, updatedData, {
+        params: { idAdmin }
+      });
+      setProduk((prevProduk) =>
+        prevProduk.map((book) => (book.id === id ? response.data : book))
+      );
+      Swal.fire("Success", "Product updated successfully", "success");
+    } catch (error) {
+      console.error("Error updating product:", error);
+      Swal.fire("Error", "An error occurred while updating the product.", "error");
+    }
   };
 
   return (

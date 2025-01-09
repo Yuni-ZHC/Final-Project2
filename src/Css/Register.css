@@ -110,3 +110,65 @@
 .text-primary:hover {
   text-decoration: underline;
 }
+
+/* Responsive Design */
+
+/* Tablet screens and smaller */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    margin-top: 50px; /* Reduced margin-top */
+  }
+
+  .card-title {
+    font-size: 1.8rem; /* Slightly smaller title font */
+  }
+
+  .form-label {
+    font-size: 1rem; /* Slightly smaller label font */
+  }
+
+  .input-group {
+    margin-bottom: 15px;
+  }
+
+  .input-group-text, .form-control {
+    font-size: 1rem; /* Adjust input font size */
+    padding: 10px;
+  }
+
+  .btn {
+    padding: 12px; /* Smaller padding for buttons */
+    font-size: 1rem; /* Smaller font size for buttons */
+  }
+}
+
+/* Mobile screens and smaller */
+@media (max-width: 480px) {
+  .card {
+    width: 95%;
+    margin-top: 30px; /* Further reduced margin-top */
+  }
+
+  .card-title {
+    font-size: 1.6rem; /* Even smaller title font */
+  }
+
+  .form-label {
+    font-size: 0.9rem; /* Smaller label font */
+  }
+
+  .input-group {
+    margin-bottom: 10px;
+  }
+
+  .input-group-text, .form-control {
+    font-size: 0.9rem; /* Smaller font size for inputs */
+    padding: 8px;
+  }
+
+  .btn {
+    padding: 10px; /* Reduced padding for buttons */
+    font-size: 0.9rem; /* Smaller font size for buttons */
+  }
+}

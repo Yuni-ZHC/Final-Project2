@@ -5,8 +5,7 @@
   background: linear-gradient(to bottom, #1d2671, #c33764); /* Background gradient on body */
  */
 
-.books {
-  font-family: 'Arial', sans-serif;
+ .books {
   padding: 40px;
   background: linear-gradient(to bottom, #1d2671, #c33764);
   min-height: 200vh;
@@ -17,128 +16,224 @@
   align-items: center;
   box-sizing: border-box;
 }
-  
-  /* Styling untuk Navbar */
-  .navbar {
-    background-color: #0d47a1;
-    color: white;
-    padding: 10px;
-    text-align: center;
+
+/* Navbar Styling */
+.navbar {
+  background-color: #0d47a1;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Table Container Styling */
+.table-container {
+  margin-top: 60px;
+  border-radius: 10px;
+  background-color: #333764;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td:not(:last-child), th:not(:last-child) {
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background-color: #434943;
+  color: rgb(224, 217, 217);
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background: linear-gradient(to bottom, #1d2671, #c33764);
+}
+
+/* Image Styling */
+img {
+  max-width: 50px;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Button Styling */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Add Book Button Styling */
+a button {
+  background: linear-gradient(to bottom, #2575fc, #6a11cb);
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+a button:hover {
+  background: linear-gradient(to bottom, #2575fc, #6a11cb);
+}
+
+/* Button Group Styling */
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Delete Button Styling */
+button:nth-child(2) {
+  background: linear-gradient(to bottom, #2575fc, #6a11cb);
+}
+
+/* Add Book Button Alignment */
+.add-book-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-book-button h2 {
+  margin-right: auto;
+}
+
+.add-book-button button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.add-book-button button:hover {
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+}
+
+/* Responsive Design */
+
+/* For Tablets and Smaller Devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .books {
+    padding: 20px; /* Reduce padding on smaller devices */
   }
-  
-  /* Styling untuk tabel dan container tabel */
+
   .table-container {
-    margin-top: 60px; /* Menambahkan jarak lebih besar antara navbar dan tabel */
-    border-radius: 10px;
-    background-color:#333764;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px; /* Reduced margin */
+    padding: 15px; /* Reduced padding */
   }
-  
-  /* Styling untuk tabel */
+
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    font-size: 14px; /* Adjust table font size */
   }
-  
-  th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  td:not(:last-child), th:not(:last-child) {
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Bayangan pada setiap kolom kecuali kolom terakhir */
-  }
-  
-  th {
-    background-color: #434943;
-    color: rgb(224, 217, 217);
-    font-weight: bold;
-  }
-  
-  tr:nth-child(even) {
-    background: linear-gradient(to bottom,#1d2671, #c33764);
-  }
-  
-  /* Styling untuk Gambar */
-  img {
-    max-width: 50px;
-    height: auto;
-    border-radius: 5px;
-  }
-  
-  /* Styling untuk tombol */
+
   button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    margin: 0 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 6px 12px; /* Smaller button padding */
+    font-size: 14px; /* Adjust button text size */
   }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Styling untuk link "Tambah Buku" */
-  a button {
-    background: linear-gradient(to bottom, #2575fc, #6a11cb);
-    margin-top: 20px;
-    display: inline-block;
-    text-align: center;
-    width: auto;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
-    text-decoration: none;
-  }
-  
-  a button:hover {
-    background: linear-gradient(to bottom, #2575fc, #6a11cb);
-  }
-  
-  /* Styling untuk group tombol Edit dan Delete */
-  .button-group {
-    display: flex;
-    gap: 10px; /* Jarak antar tombol */
-    justify-content: center; /* Center tombol */
-  }
-  
-  /* Mengubah background tombol Delete menjadi merah */
-  button:nth-child(2) {
-    background: linear-gradient(to bottom, #2575fc, #6a11cb); /* Tombol Delete berwarna merah */
-  }
-  
+
   .add-book-button {
-    display: flex;
-    justify-content: flex-end; /* Memindahkan tombol ke kanan */
+    flex-direction: column; /* Stack the add book button on smaller screens */
     align-items: center;
-    margin-bottom: 20px;
   }
-  
-  .add-book-button h2 {
-    margin-right: auto; /* Tetap biarkan judul di kiri */
-  }
-  
+
   .add-book-button button {
-    padding: 10px 20px;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    border: none;
-    color: white;
-    border-radius: 10px;
+    width: 100%; /* Make the button full width */
     font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
   }
-  
-  .add-book-button button:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
+
+  /* Navbar */
+  .navbar {
+    padding: 12px;
   }
+}
+
+/* For Mobile Devices (max-width: 500px) */
+@media (max-width: 500px) {
+  .books {
+    padding: 10px; /* More compact padding */
+  }
+
+  .table-container {
+    margin-top: 30px; /* Reduced margin */
+    padding: 10px; /* Less padding */
+  }
+
+  table {
+    font-size: 12px; /* Further reduce table font size */
+  }
+
+  button {
+    padding: 6px 10px; /* Smaller button padding */
+    font-size: 12px; /* Adjust font size */
+  }
+
+  /* Adjust Add Book Button */
+  .add-book-button {
+    margin-bottom: 15px; /* Reduce bottom margin */
+  }
+
+  .add-book-button button {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+}
+
+/* For Very Small Mobile Devices (max-width: 320px) */
+@media (max-width: 320px) {
+  .books {
+    padding: 10px;
+  }
+
+  .table-container {
+    margin-top: 20px; /* Even smaller margin */
+    padding: 8px; /* Minimal padding */
+  }
+
+  table {
+    font-size: 11px; /* Very small font for the table */
+  }
+
+  button {
+    padding: 5px 10px; /* Reduce padding even further */
+    font-size: 11px; /* Adjust font size */
+  }
+
+  .add-book-button button {
+    font-size: 0.9rem; /* Smaller button text */
+    padding: 8px 14px; /* Smaller padding for buttons */
+  }
+}
   
   

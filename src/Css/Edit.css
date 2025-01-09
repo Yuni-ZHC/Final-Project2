@@ -1,104 +1,154 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #1a1a3d, #593d70, #9c75a1);
-    color: #ffffff;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Centered Card */
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #1a1a3d, #593d70, #9c75a1);
+  color: #ffffff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered Card */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  max-width: 400px;
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+button {
+  background: #4e79a7;
+  border: none;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background: #3c5f7a;
+  transform: scale(1.05);
+}
+
+button:active {
+  background: #2c4861;
+  transform: scale(1);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+
+/* For screens smaller than 768px (tablets and below) */
+@media (max-width: 768px) {
   .main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  h2 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #fff;
-  }
-  
-  .form-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  input {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    padding: 12px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: background 0.3s, box-shadow 0.3s;
-  }
-  
-  input:focus {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    outline: none;
-  }
-  
-  input::placeholder {
-    color: #ccc;
-  }
-  
-  button {
-    background: #4e79a7;
-    border: none;
-    color: #fff;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-  
-  button:hover {
-    background: #3c5f7a;
-    transform: scale(1.05);
-  }
-  
-  button:active {
-    background: #2c4861;
-    transform: scale(1);
-  }
-  
-  button:focus {
-    outline: none;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-  }
-  
-  /* Make the card responsive */
-  @media (max-width: 500px) {
-    .main-content {
       padding: 20px;
-    }
-  
-    input {
+      width: 90%; /* Ensure the card takes most of the screen width */
+  }
+
+  h2 {
+      font-size: 22px; /* Slightly smaller title */
+  }
+
+  input {
+      font-size: 13px;
+      padding: 11px;
+  }
+
+  button {
+      font-size: 15px;
+      padding: 11px;
+  }
+}
+
+/* For screens smaller than 500px (mobile phones) */
+@media (max-width: 500px) {
+  .main-content {
+      padding: 15px;
+      width: 95%; /* Ensure the card takes nearly the entire screen width */
+  }
+
+  h2 {
+      font-size: 20px; /* Smaller title for mobile */
+  }
+
+  input {
       font-size: 12px;
       padding: 10px;
-    }
-  
-    button {
+  }
+
+  button {
       font-size: 14px;
       padding: 10px;
-    }
   }
-  
+}
+
+/* For very small screens (like older smartphones) */
+@media (max-width: 320px) {
+  .main-content {
+      padding: 10px;
+      width: 95%;
+  }
+
+  h2 {
+      font-size: 18px; /* Further reduce title size */
+  }
+
+  input {
+      font-size: 11px;
+      padding: 8px;
+  }
+
+  button {
+      font-size: 13px;
+      padding: 9px;
+  }
+}

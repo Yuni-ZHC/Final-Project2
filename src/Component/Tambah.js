@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Navbar1 from "./Navbar1";
 import { useNavigate } from "react-router-dom";
 import "../Css/Tambah.css"; // Pastikan path CSS benar
 
-function Tambah({ idAdmin }) {
+function Tambah() {
   const [tambah, settambah] = useState({
     judulNovel: "",
     penulisNovel: "",
@@ -14,7 +14,23 @@ function Tambah({ idAdmin }) {
     hargaNovel: "",
   });
 
+  const [idAdmin, setIdAdmin] = useState(null); // State untuk menyimpan idAdmin
   const navigate = useNavigate();
+
+  // Ambil idAdmin dari localStorage saat komponen dimuat
+  useEffect(() => {
+    const adminData = JSON.parse(localStorage.getItem("adminData"));
+    if (adminData && adminData.id) {
+      setIdAdmin(adminData.id);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "ID Admin tidak ditemukan",
+        text: "Pastikan Anda login sebagai admin.",
+      });
+      navigate("/login"); // Redirect ke halaman login jika admin belum login
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

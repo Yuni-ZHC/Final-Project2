@@ -5,6 +5,7 @@ import '../Css/Login.css'; // Import custom CSS
 import axios from 'axios';
 import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import Swal from 'sweetalert2'; // Import SweetAlert2
+import { API_LOGIN } from "../utils/BaseUrl";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const loginRequest = { email, password };
-      const response = await axios.post("http://localhost:8080/api/login", loginRequest);
+      const response = await axios.post(`${API_LOGIN}`, loginRequest);
 
       // Assuming the response contains the token and user data
       const { token, data } = response.data;

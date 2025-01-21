@@ -43,7 +43,7 @@
 .card {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to right, #1a1a3d, #593d70, #9c75a1);/* Background putih lebih solid */
+    background: #ffffff; /* Background putih solid */
     border-radius: 20px; /* Border lebih bulat */
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih halus dan besar */
     width: 220px;  /* Ukuran lebar kartu */
@@ -55,7 +55,6 @@
     min-width: 220px;
     max-width: 280px;
     margin: 10px;
-    background: #f5f5f5; /* Background lembut */
 }
 
 /* Card Image */

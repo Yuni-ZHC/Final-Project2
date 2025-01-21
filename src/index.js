@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';  // Impor ReactDOM dari 'react-dom/client'
-import './index.css';
+import ReactDOM from 'react-dom/client';
 import App from './App';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));  // Buat root
+// Bungkus seluruh aplikasi dengan Router di sini, hanya di index.js
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Router>  {/* Router hanya di sini */}
     <App />
-  </React.StrictMode>
+  </Router>
 );

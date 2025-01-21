@@ -82,23 +82,23 @@ function Register() {
   };
 
   return (
-    
-      <div className="card">
-        <h2 className="card-title">Register</h2>
+    <div className="register-container">
+      <div className="register-card">
+        <h2 className="register-title">Register</h2>
         {errorMessage && (
-          <p className="error-message">{errorMessage}</p>
+          <p className="register-error-message">{errorMessage}</p>
         )}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="register-form">
           {/* Username Field */}
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username</label>
-            <div className="input-group">
-              <span className="input-group-text"><FontAwesomeIcon icon={faUser} /></span>
+          <div className="register-form-group">
+            <label htmlFor="username" className="register-label"></label>
+            <div className="register-input-group">
+              <span className="register-input-icon"><FontAwesomeIcon icon={faUser} /></span>
               <input
                 type="text"
                 id="username"
-                className="form-control"
-                placeholder="Username"
+                className="register-input"
+                placeholder="Enter your username"
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -107,15 +107,15 @@ function Register() {
           </div>
 
           {/* Email Field */}
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email</label>
-            <div className="input-group">
-              <span className="input-group-text"><FontAwesomeIcon icon={faUser} /></span>
+          <div className="register-form-group">
+            <label htmlFor="email" className="register-label"></label>
+            <div className="register-input-group">
+              <span className="register-input-icon"><FontAwesomeIcon icon={faUser} /></span>
               <input
                 type="email"
                 id="email"
-                className="form-control"
-                placeholder="Email"
+                className="register-input"
+                placeholder="Enter your email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -124,39 +124,38 @@ function Register() {
           </div>
 
           {/* Password Field */}
-          <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <div className="input-group">
-            <span className="input-group-text"><FontAwesomeIcon icon={faKey} /></span>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              className="form-control"
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              type="button"
-              className="btn btn-outline-secondary"
-              onClick={togglePasswordVisibility}
-            >
-              <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
-            </button>
+          <div className="register-form-group">
+            <label htmlFor="password" className="register-label"></label>
+            <div className="register-input-group">
+              <span className="register-input-icon"><FontAwesomeIcon icon={faKey} /></span>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                className="register-input"
+                placeholder="Enter your password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="register-password-toggle"
+                onClick={togglePasswordVisibility}
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </button>
+            </div>
           </div>
-        </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-100 mb-3">Register</button>
+          <button type="submit" className="register-submit-button">Register</button>
 
-          <p className="text-center">
-            Sudah punya akun?{" "}
-            <a href="/login" className="text-primary">Masuk</a>
+          <p className="register-login-link">
+            Sudah punya akun? <a href="/login">Masuk</a>
           </p>
         </form>
       </div>
-   
+    </div>
   );
 }
 

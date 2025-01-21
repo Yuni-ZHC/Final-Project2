@@ -1,239 +1,103 @@
-/* body {
+.products-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 100px 20px 20px; /* Tambahkan padding atas untuk menghindari navbar */
+  background-color: #f7f7f7;
+}
+
+.products-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, #1d2671, #c33764); /* Background gradient on body */
- */
-
- .books {
-  padding: 40px;
-  background: linear-gradient(to bottom, #1d2671, #c33764);
-  min-height: 200vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-/* Navbar Styling */
-.navbar {
-  background-color: #0d47a1;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-
-/* Table Container Styling */
-.table-container {
-  margin-top: 60px;
-  border-radius: 10px;
-  background-color: #333764;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Table Styling */
-table {
-  width: 100%;
-  border-collapse: collapse;
   margin-bottom: 20px;
+  margin-top: 20px; /* Pastikan ada margin tambahan di bawah navbar */
 }
 
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-td:not(:last-child), th:not(:last-child) {
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-th {
-  background-color: #434943;
-  color: rgb(224, 217, 217);
+.products-title {
+  font-size: 2rem;
   font-weight: bold;
+  text-align: center;
+  color: #007bff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0; /* Hilangkan margin bawaan jika ada */
 }
 
-tr:nth-child(even) {
-  background: linear-gradient(to bottom, #1d2671, #c33764);
-}
-
-/* Image Styling */
-img {
-  max-width: 50px;
-  height: auto;
-  border-radius: 5px;
-}
-
-/* Button Styling */
-button {
-  background-color: #4CAF50;
+.add-product-btn {
+  font-size: 1.8rem;
+  padding: 10px 15px;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 16px;
-  margin: 0 5px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  z-index: 1; /* Tambahkan z-index jika tombol tertumpuk */
 }
 
-button:hover {
-  background-color: #45a049;
+.add-product-btn:hover {
+  background-color: #0056b3;
 }
 
-/* Add Book Button Styling */
-a button {
-  background: linear-gradient(to bottom, #2575fc, #6a11cb);
-  margin-top: 20px;
-  display: inline-block;
+
+.products-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.products-table th, .products-table td {
+  padding: 12px 18px;
   text-align: center;
-  width: auto;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.products-table th {
+  background-color: #007bff;
   color: white;
-  text-decoration: none;
 }
 
-a button:hover {
-  background: linear-gradient(to bottom, #2575fc, #6a11cb);
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
-/* Button Group Styling */
-.button-group {
+.action-buttons {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
 
-/* Delete Button Styling */
-button:nth-child(2) {
-  background: linear-gradient(to bottom, #2575fc, #6a11cb);
-}
-
-/* Add Book Button Alignment */
-.add-book-button {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.add-book-button h2 {
-  margin-right: auto;
-}
-
-.add-book-button button {
-  padding: 10px 20px;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  border: none;
-  color: white;
-  border-radius: 10px;
-  font-size: 1rem;
+.action-btn {
+  padding: 8px 12px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s ease;
 }
 
-.add-book-button button:hover {
-  background: linear-gradient(to right, #2575fc, #6a11cb);
+.edit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
 }
 
-/* Responsive Design */
-
-/* For Tablets and Smaller Devices (max-width: 768px) */
-@media (max-width: 768px) {
-  .books {
-    padding: 20px; /* Reduce padding on smaller devices */
-  }
-
-  .table-container {
-    margin-top: 40px; /* Reduced margin */
-    padding: 15px; /* Reduced padding */
-  }
-
-  table {
-    font-size: 14px; /* Adjust table font size */
-  }
-
-  button {
-    padding: 6px 12px; /* Smaller button padding */
-    font-size: 14px; /* Adjust button text size */
-  }
-
-  .add-book-button {
-    flex-direction: column; /* Stack the add book button on smaller screens */
-    align-items: center;
-  }
-
-  .add-book-button button {
-    width: 100%; /* Make the button full width */
-    font-size: 1rem;
-  }
-
-  /* Navbar */
-  .navbar {
-    padding: 12px;
-  }
+.edit-btn:hover {
+  background-color: #218838;
 }
 
-/* For Mobile Devices (max-width: 500px) */
-@media (max-width: 500px) {
-  .books {
-    padding: 10px; /* More compact padding */
-  }
-
-  .table-container {
-    margin-top: 30px; /* Reduced margin */
-    padding: 10px; /* Less padding */
-  }
-
-  table {
-    font-size: 12px; /* Further reduce table font size */
-  }
-
-  button {
-    padding: 6px 10px; /* Smaller button padding */
-    font-size: 12px; /* Adjust font size */
-  }
-
-  /* Adjust Add Book Button */
-  .add-book-button {
-    margin-bottom: 15px; /* Reduce bottom margin */
-  }
-
-  .add-book-button button {
-    padding: 8px 16px;
-    font-size: 1rem;
-  }
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
 }
 
-/* For Very Small Mobile Devices (max-width: 320px) */
-@media (max-width: 320px) {
-  .books {
-    padding: 10px;
-  }
-
-  .table-container {
-    margin-top: 20px; /* Even smaller margin */
-    padding: 8px; /* Minimal padding */
-  }
-
-  table {
-    font-size: 11px; /* Very small font for the table */
-  }
-
-  button {
-    padding: 5px 10px; /* Reduce padding even further */
-    font-size: 11px; /* Adjust font size */
-  }
-
-  .add-book-button button {
-    font-size: 0.9rem; /* Smaller button text */
-    padding: 8px 14px; /* Smaller padding for buttons */
-  }
+.delete-btn:hover {
+  background-color: #c82333;
 }
-  
-  

@@ -24,16 +24,15 @@ const Login = () => {
     try {
       const loginRequest = { email, password };
       const response = await axios.post(`${API_LOGIN}`, loginRequest);
-
+  
       // Assuming the response contains the token and user data
-      const { token, data } = response.data;
-
-      // Save token to localStorage
-      localStorage.setItem("authToken", token);
-
-      // Optionally save user data
-      localStorage.setItem("adminData", JSON.stringify(data));
-
+      const { token, data: adminData } = response.data;
+  
+      // Simpan token dan data admin yang diterima dari server
+      localStorage.setItem('authToken', token);
+      localStorage.setItem('adminData', JSON.stringify(adminData));
+      localStorage.setItem('adminId', adminData.id);
+  
       // Show success alert using SweetAlert
       Swal.fire({
         title: 'Login Successful!',
@@ -44,10 +43,10 @@ const Login = () => {
         if (result.isConfirmed) {
           console.log("Navigating to /books");
           // Redirect to the 'books' page after successful login
-          navigate("/books"); 
+          navigate("/books");
         }
       });
-
+  
     } catch (error) {
       // Handle errors
       if (error.response && error.response.status === 401) {
@@ -57,17 +56,18 @@ const Login = () => {
       }
     }
   };
+  
 
   return (
-    <div className="login-container">
+    <div className="login-page">
       <div className="login-card">
         <h3 className="login-card-title">Welcome Back!</h3>
         {errorMessage && <div className="error-message">{errorMessage}</div>}
-        <form onSubmit={handleLogin}>
-          <div className="input-group-wrapper">
+        <form onSubmit={handleLogin} className="login-form">
+          <div className="input-wrapper">
             <label htmlFor="email" className="input-label">Email</label>
-            <div className="input-group">
-              <span className="input-group-icon"><FontAwesomeIcon icon={faUser} /></span>
+            <div className="input-container">
+              <span className="input-icon"><FontAwesomeIcon icon={faUser} /></span>
               <input
                 type="email"
                 id="email"
@@ -79,12 +79,12 @@ const Login = () => {
               />
             </div>
           </div>
-          <div className="input-group-wrapper">
+          <div className="input-wrapper">
             <label htmlFor="password" className="input-label">Password</label>
-            <div className="input-group">
-              <span className="input-group-icon"><FontAwesomeIcon icon={faKey} className="small-icon" /></span>
+            <div className="input-container">
+              <span className="input-icon"><FontAwesomeIcon icon={faKey} className="small-icon" /></span>
               <input
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password"} // Benar: Tampilkan teks jika true
                 id="password"
                 className="input-field"
                 placeholder="Password"
@@ -97,12 +97,13 @@ const Login = () => {
                 className="password-toggle-btn"
                 onClick={togglePasswordVisibility}
               >
-                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} className="small-icon" />
+                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="small-icon" />
+                {/* Benar: Eye untuk tampil, Eye Slash untuk sembunyi */}
               </button>
             </div>
           </div>
           <div className="btn-container">
-            <button className="submit-btn" type="submit">Login</button>
+            <button className="login-btn" type="submit">Login</button>
           </div>
         </form>
       </div>

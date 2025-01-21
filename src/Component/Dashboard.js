@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Css/Dashboard.css';
 import Navbar from './Navbar';
 import image1 from '../Image/mahen-removebg-preview.png';
@@ -15,6 +16,18 @@ import image11 from '../Image/Arthur-removebg-preview.png';
 import image12 from '../Image/marveluna-removebg-preview.png';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  // Mengecek apakah token ada di localStorage
+  const isLoggedIn = localStorage.getItem('token');
+
+  useEffect(() => {
+    // Jika tidak ada token, arahkan pengguna ke halaman login
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+  }, [isLoggedIn, navigate]);
+
   const books = [
     {
       id: 1,
@@ -126,7 +139,6 @@ const Dashboard = () => {
     },
   ];
 
-
   return (
     <div className="dashboard">
       <Navbar />
@@ -142,7 +154,6 @@ const Dashboard = () => {
               <p>{book.rating}</p>
               <p>{book.desc}</p>
               <p>{book.price}</p>
-              <button className="buy-now-button">Buy Now</button>
             </div>
           </div>
         ))}

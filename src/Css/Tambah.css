@@ -1,18 +1,6 @@
 /* Tambah.css */
 
 /* Background Galaxy */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #1a1a47, #3b3b6b, #5a5a8a);
-  color: white;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Menjaga konten berada di tengah secara vertikal */
-  text-align: center;
-}
 
 /* Main Content */
 .main-content {

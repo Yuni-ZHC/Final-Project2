@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Navbar1 from './Navbar1';
-import '../Css/Books.css';
-import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import axios from 'axios'; // Import Axios
+import React, { useEffect, useState } from "react";
+import "../Css/Books.css";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/data"; // Default API base URL
+const API_URL = "http://localhost:8080/api/data";
 
 const Books = () => {
   const [produk, setProduk] = useState([]);
   const navigate = useNavigate();
   const adminData = JSON.parse(localStorage.getItem("adminData"));
-  const idAdmin = adminData ? adminData.id : null; // Get the admin's ID
+  const idAdmin = adminData ? adminData.id : null;
 
   useEffect(() => {
-    // Fetch produk menggunakan Axios
     const fetchProduk = async () => {
       if (idAdmin) {
         try {
@@ -25,7 +23,6 @@ const Books = () => {
             setProduk(response.data);
           }
         } catch (error) {
-          console.error("Error fetching data:", error);
           Swal.fire("Error", "An error occurred while fetching the products.", "error");
         }
       }
@@ -36,12 +33,12 @@ const Books = () => {
 
   const handleDeleteBook = async (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to delete this product?',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "Do you want to delete this product?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -49,44 +46,24 @@ const Books = () => {
           setProduk(produk.filter((book) => book.id !== id));
           Swal.fire("Deleted!", "The product has been deleted.", "success");
         } catch (error) {
-          console.error("Error deleting book:", error);
           Swal.fire("Error", "An error occurred while deleting the product.", "error");
         }
       }
     });
   };
 
-  const handleAddProduct = () => {
-    navigate("/tambah");
-  };
-
-  const handleEditBook = async (id, updatedData) => {
-    try {
-      const response = await axios.put(`${API_URL}/editById/${id}`, updatedData, {
-        params: { idAdmin }
-      });
-      setProduk((prevProduk) =>
-        prevProduk.map((book) => (book.id === id ? response.data : book))
-      );
-      Swal.fire("Success", "Product updated successfully", "success");
-    } catch (error) {
-      console.error("Error updating product:", error);
-      Swal.fire("Error", "An error occurred while updating the product.", "error");
-    }
-  };
-
   return (
-    <div className="books">
-      <Navbar1 />
-      <div className="table-container">
-        <div className="add-book-button">
-          <h2>Daftar Produk</h2>
-          <button onClick={handleAddProduct}>Tambah Buku</button>
-        </div>
-        <table>
+    <div className="products-container">
+      <div className="products-header">
+        <h2 className="products-title">Daftar Produk</h2>
+        <button className="add-product-btn" onClick={() => navigate("/tambah")}>+</button>
+      </div>
+      <div className="products-table-container">
+        <table className="products-table">
           <thead>
             <tr>
               <th>No</th>
+              <th>Foto</th>
               <th>Judul</th>
               <th>Penulis</th>
               <th>Rating</th>
@@ -99,17 +76,28 @@ const Books = () => {
             {produk.map((book, index) => (
               <tr key={book.id}>
                 <td>{index + 1}</td>
+                <td>
+                  {book.gambarNovel ? (
+                    <img
+                      src={book.gambarNovel}
+                      alt={book.judulNovel}
+                      className="product-image"
+                    />
+                  ) : (
+                    "Foto Tidak Ditemukan"
+                  )}
+                </td>
                 <td>{book.judulNovel}</td>
                 <td>{book.penulisNovel}</td>
                 <td>{book.ratingNovel}</td>
                 <td>{book.deskripsiNovel}</td>
                 <td>{book.hargaNovel}</td>
                 <td>
-                  <div className="button-group">
-                    <Link to={`/Edit/${book.id}`}>
-                      <button>Edit</button>
+                  <div className="action-buttons">
+                    <Link to={`/edit/${book.id}`}>
+                      <button className="action-btn edit-btn">Edit</button>
                     </Link>
-                    <button onClick={() => handleDeleteBook(book.id)}>Delete</button>
+                    <button className="action-btn delete-btn" onClick={() => handleDeleteBook(book.id)}>Hapus</button>
                   </div>
                 </td>
               </tr>

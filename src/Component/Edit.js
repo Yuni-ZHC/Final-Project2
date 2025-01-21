@@ -1,9 +1,40 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Navbar1 from "./Navbar1";
 import { useNavigate, useParams } from "react-router-dom";
 // import "../Css/EditData.css";
+
+
+const API_URL = "http://localhost:8080/api/data";
+
+
+// Fungsi untuk upload gambar ke S3
+const uploadToS3 = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const response = await fetch("https://s3.lynk2.co/api/s3/Edit", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Gagal mengupload gambar ke S3");
+    }
+
+    const data = await response.json();
+    if (data.data && data.data.url_file) {
+      console.log("URL gambar berhasil didapat:", data.data.url_file);
+      return data.data.url_file;
+    } else {
+      throw new Error("URL gambar tidak tersedia dalam respons S3");
+    }
+  } catch (error) {
+    console.error("Error upload ke S3:", error);
+    throw error;
+  }
+};
 
 function Edit() {
   const [formData, setFormData] = useState({
@@ -12,18 +43,21 @@ function Edit() {
     ratingNovel: "",
     deskripsiNovel: "",
     hargaNovel: "",
+    gambarNovel: "", // Untuk URL gambar
   });
 
+  const [selectedFile, setSelectedFile] = useState(null); // Untuk menyimpan file yang dipilih
   const navigate = useNavigate();
   const { id } = useParams(); // Mengambil ID dari URL
 
   useEffect(() => {
     // Mengambil data berdasarkan ID
-    axios.get(`http://localhost:8080/api/data/produk/${id}`)
-      .then(response => {
+    axios
+      .get(`http://localhost:8080/api/data/produk/${id}`)
+      .then((response) => {
         setFormData(response.data); // Set data ke form
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Terjadi kesalahan saat mengambil data:", error);
       });
   }, [id]);
@@ -33,9 +67,13 @@ function Edit() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted", formData); // Debugging log
 
     // Retrieve idAdmin from local storage
     const adminData = JSON.parse(localStorage.getItem("adminData"));
@@ -50,24 +88,50 @@ function Edit() {
       return;
     }
 
-    axios.put(`http://localhost:8080/api/data/editById/${id}?idAdmin=${idAdmin}`, formData)
-      .then(response => {
+    try {
+      let imageUrl = formData.gambarNovel; // Gunakan URL gambar yang ada jika tidak ada file baru yang dipilih
+
+      // Jika ada file yang dipilih, upload ke S3
+      if (selectedFile) {
         Swal.fire({
-          icon: "success",
-          title: "Data berhasil diperbarui",
-          showConfirmButton: false,
-          timer: 1000,
+          title: "Mengupload gambar...",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
         });
-        navigate("/books"); // Navigasi ke dashboard setelah edit
-      })
-      .catch(error => {
-        console.error("Terjadi kesalahan saat memperbarui data:", error);
+
+        imageUrl = await uploadToS3(selectedFile);
+
+        Swal.close(); // Tutup loading jika sukses
+      }
+
+      // Update data ke server
+      await axios.put(`${API_URL}/editById/${id}?idAdmin=${idAdmin}`, {
+        ...formData,
+        gambarNovel: imageUrl, // Gunakan URL gambar dari S3
       });
+      
+
+      Swal.fire({
+        icon: "success",
+        title: "Data berhasil diperbarui",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      navigate("/books"); // Navigasi ke halaman books setelah edit
+    } catch (error) {
+      console.error("Terjadi kesalahan saat memperbarui data:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Gagal memperbarui data",
+        text: error.response ? error.response.data.message : "Terjadi kesalahan",
+      });
+    }
   };
 
   return (
     <div className="main-content">
-      <Navbar1 />
       <h2>Edit Data</h2>
       <form onSubmit={handleSubmit} className="form-container">
         <input
@@ -104,6 +168,11 @@ function Edit() {
           placeholder="Harga"
           value={formData.hargaNovel}
           onChange={handleChange}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
         />
         <button type="submit">Simpan</button>
       </form>

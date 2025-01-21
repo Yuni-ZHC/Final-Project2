@@ -1,52 +1,38 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Import SweetAlert2 for the logout confirmation
-import '../Css/Navbar.css'; // Ensure this file exists and has appropriate styling for navbar
+import React from "react";
+import { Link } from "react-router-dom";
+import '../Css/Navbar.css';
 
-const Navbar = ({ onLogout }) => {
-  const navigate = useNavigate();
-
-  // Function to handle logout
-  const handleLogout = () => {
-    // Show SweetAlert confirmation before logout
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Do you want to logout?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, logout!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Remove token from localStorage
-        localStorage.removeItem('token');
-        
-        // Call onLogout function to trigger any additional logout logic
-        onLogout();
-
-        // Redirect user to login page after logout
-        navigate('/login');
-
-        // Show SweetAlert success message
-        Swal.fire(
-          'Logged Out!',
-          'You have been logged out successfully.',
-          'success'
-        );
-      }
-    });
-  };
-
+const Navbar = ({ isLoggedIn, handleLoginLogout }) => {
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
-        <h1>Book Store Yuni</h1>
+      <div className="navbar-container">
+        {/* Brand / Logo */}
+        <h1 className="navbar-brand">Toko Buku Yuni</h1>
+        
+        {/* Navigation Links */}
+        <ul className="navbar-links">
+          {!isLoggedIn && (
+            <li className="navbar-item">
+              <Link to="/" className="navbar-link">Home</Link>
+            </li>
+          )}
+          
+          {isLoggedIn ? (
+            <>
+              <li className="navbar-item">
+                <Link to="/books" className="navbar-link">Produk</Link>
+              </li>
+              <li className="navbar-item">
+                <button onClick={handleLoginLogout} className="navbar-btn">Logout</button>
+              </li>
+            </>
+          ) : (
+            <li className="navbar-item">
+              <Link to="/login" className="navbar-btn navbar-login">Login</Link>
+            </li>
+          )}
+        </ul>
       </div>
-      <ul className="navbar-menu">
-        <li><Link to="/dashboard">Home</Link></li>
-        <li><Link to="/login">Login</Link></li>
-      </ul>
     </nav>
   );
 };

@@ -1,174 +1,124 @@
-/* Card container styling */
-.card {
+/* Register.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e7f3ff; /* Pastel blue background */
+  margin: 0;
+  padding: 0;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #e7f3ff;
+}
+
+.register-card {
+  background-color: #ffffff; /* White card */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 420px;
-  background-color: #2a2a2a; /* Darker background for better contrast */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
-  padding: 25px;
-  border-radius: 12px; /* Rounded corners */
-  transition: transform 0.3s ease-in-out;
-  margin: 30px auto; /* Center the card with margin */
-  margin-top: 100px; /* Add space between the navbar and the card */
+  max-width: 400px;
+  padding: 20px 30px;
 }
 
-.card:hover {
-  transform: scale(1.02); /* Hover effect for a little zoom-in effect */
-}
-
-/* Card title styling */
-.card-title {
-  text-align: center;
-  font-size: 2rem;
+.register-title {
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 25px;
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 1px;
+  color: #3a8fd9; /* Pastel blue title */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Label styling */
-.form-label {
-  font-size: 1.1rem;
+.register-error-message {
+  color: #ff4d4f;
+  font-size: 14px;
+  text-align: center;
   margin-bottom: 10px;
-  color: #eaeaea;
-  display: block;
 }
 
-/* Input group styling */
-.input-group {
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form-group {
+  margin-bottom: 15px;
+}
+
+.register-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.register-input-group {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #cfd9e6;
+  border-radius: 8px;
+  background-color: #f9fcff;
+  padding: 5px 10px;
 }
 
-.input-group-text {
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #eaeaea;
-  border: none;
-  font-size: 1.1rem;
+.register-input-icon {
+  color: #3a8fd9;
+  margin-right: 10px;
 }
 
-.form-control {
-  flex: 1;
-  padding: 12px;
+.register-input {
   border: none;
+  background: none;
   outline: none;
-  background: transparent;
-  color: #eaeaea;
-  font-size: 1.1rem;
+  flex: 1;
+  font-size: 14px;
+  color: #333;
+  height: 5vh;
 }
 
-/* Button styling */
-.btn {
-  padding: 14px;
+.register-password-toggle {
+  background: none;
   border: none;
-  border-radius: 10px;
-  font-size: 1.1rem;
+  color: #3a8fd9;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.btn-primary {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  color: #fff;
-  width: 100%;
+.register-password-toggle:hover {
+  color: #216dbf;
 }
 
-.btn-primary:hover {
-  background: linear-gradient(to right, #2575fc, #6a11cb);
-}
-
-/* Button outline secondary for password visibility toggle */
-.btn-outline-secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #fff;
-}
-
-.btn-outline-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* Error message styling */
-.error-message {
-  color: #ff6b6b;
+.register-submit-button {
+  background-color: #3a8fd9; /* Primary button color */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
   text-align: center;
-  margin-bottom: 15px;
-  font-weight: 500;
+  margin-top: 10px;
 }
 
-/* Text primary styling for clickable links or buttons */
-.text-primary {
-  color: #feb47b;
+.register-submit-button:hover {
+  background-color: #216dbf;
 }
 
-.text-primary:hover {
+.register-login-link {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+}
+
+.register-login-link a {
+  color: #3a8fd9;
+  text-decoration: none;
+}
+
+.register-login-link a:hover {
   text-decoration: underline;
-}
-
-/* Responsive Design */
-
-/* Tablet screens and smaller */
-@media (max-width: 768px) {
-  .card {
-    width: 90%;
-    margin-top: 50px; /* Reduced margin-top */
-  }
-
-  .card-title {
-    font-size: 1.8rem; /* Slightly smaller title font */
-  }
-
-  .form-label {
-    font-size: 1rem; /* Slightly smaller label font */
-  }
-
-  .input-group {
-    margin-bottom: 15px;
-  }
-
-  .input-group-text, .form-control {
-    font-size: 1rem; /* Adjust input font size */
-    padding: 10px;
-  }
-
-  .btn {
-    padding: 12px; /* Smaller padding for buttons */
-    font-size: 1rem; /* Smaller font size for buttons */
-  }
-}
-
-/* Mobile screens and smaller */
-@media (max-width: 480px) {
-  .card {
-    width: 95%;
-    margin-top: 30px; /* Further reduced margin-top */
-  }
-
-  .card-title {
-    font-size: 1.6rem; /* Even smaller title font */
-  }
-
-  .form-label {
-    font-size: 0.9rem; /* Smaller label font */
-  }
-
-  .input-group {
-    margin-bottom: 10px;
-  }
-
-  .input-group-text, .form-control {
-    font-size: 0.9rem; /* Smaller font size for inputs */
-    padding: 8px;
-  }
-
-  .btn {
-    padding: 10px; /* Reduced padding for buttons */
-    font-size: 0.9rem; /* Smaller font size for buttons */
-  }
 }

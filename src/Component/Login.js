@@ -25,27 +25,25 @@ const Login = () => {
       const loginRequest = { email, password };
       const response = await axios.post(`${API_LOGIN}`, loginRequest);
   
-      // Assuming the response contains the token and user data
-      const { token, data: adminData } = response.data;
-  
-      // Simpan token dan data admin yang diterima dari server
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('adminData', JSON.stringify(adminData));
-      localStorage.setItem('adminId', adminData.id);
-  
-      // Show success alert using SweetAlert
-      Swal.fire({
-        title: 'Login Successful!',
-        text: 'You have logged in successfully.',
-        icon: 'success',
-        confirmButtonText: 'Ok',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          console.log("Navigating to /books");
-          // Redirect to the 'books' page after successful login
-          navigate("/books");
-        }
-      });
+      // Pastikan API respons mengirimkan data yang benar
+const { token, data: adminData } = response.data;
+
+if (token && adminData) {
+  localStorage.setItem('authToken', token);
+  localStorage.setItem('adminData', JSON.stringify(adminData));
+  localStorage.setItem('adminId', adminData.id);
+  // Navigasi ke /books setelah login sukses
+  navigate("/books");
+} else {
+  // Jika token atau adminData tidak ada, tampilkan error
+  Swal.fire({
+    title: 'Login Failed',
+    text: 'Invalid login credentials.',
+    icon: 'error',
+    confirmButtonText: 'Try Again',
+  });
+}
+
   
     } catch (error) {
       // Handle errors

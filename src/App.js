@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Dashboard from './Component/Dashboard';
@@ -13,45 +12,45 @@ import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
-  const navigate = useNavigate();  // Gunakan useNavigate di sini
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    navigate('/');  // Redirect ke Dashboard setelah logout
+    navigate('/');  // Setelah logout, arahkan ke halaman dashboard atau halaman lain
   };
 
   useEffect(() => {
+    // Jangan arahkan pengguna ke halaman lain jika mereka belum login dan ingin membuka login
     if (isLoggedIn) {
-      navigate('/books');  // Redirect ke '/books' jika sudah login
+      navigate('/books');  // Arahkan ke '/books' setelah login
     }
   }, [isLoggedIn, navigate]);
 
   return (
     <div className="App">
+      {/* Navbar menerima status login */}
       <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-      <div>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
-          <Route path="/register" element={<Register />} />
+      <Routes>
+        {/* Rute Publik */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+        <Route path="/register" element={<Register />} />
 
-          {/* Private Routes */}
-          <Route 
-            path="/books" 
-            element={<PrivateRoutes><Books /></PrivateRoutes>} 
-          />
-          <Route 
-            path="/tambah" 
-            element={<PrivateRoutes><Tambah /></PrivateRoutes>} 
-          />
-          <Route 
-            path="/edit/:id" 
-            element={<PrivateRoutes><Edit /></PrivateRoutes>} 
-          />
-        </Routes>
-      </div>
+        {/* Rute Private */}
+        <Route 
+          path="/books" 
+          element={<PrivateRoutes><Books /></PrivateRoutes>} 
+        />
+        <Route 
+          path="/tambah" 
+          element={<PrivateRoutes><Tambah /></PrivateRoutes>} 
+        />
+        <Route 
+          path="/edit/:id" 
+          element={<PrivateRoutes><Edit /></PrivateRoutes>} 
+        />
+      </Routes>
     </div>
   );
 }

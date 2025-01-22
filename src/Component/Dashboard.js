@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Css/Dashboard.css';
-import Navbar from './Navbar';
 import image1 from '../Image/mahen-removebg-preview.png';
 import image2 from '../Image/skiforzonia-removebg-preview.png';
 import image3 from '../Image/hujan-removebg-preview.png';
@@ -22,11 +21,11 @@ const Dashboard = () => {
   const isLoggedIn = localStorage.getItem('token');
 
   useEffect(() => {
-    // Jika tidak ada token, arahkan pengguna ke halaman login
+    // Jika tidak ada token, tetap biarkan pengguna di halaman Dashboard tanpa redirect
     if (!isLoggedIn) {
-      navigate('/login');
+      console.log('Pengguna tidak login. Menampilkan Dashboard versi tamu.');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn]);
 
   const books = [
     {
@@ -140,20 +139,24 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="dashboard">
-      <Navbar />
-      <h2>Selamat Datang Di Toko Novel</h2>
-      <h4>Cerita terbaik sedang menunggu untuk Anda baca. Jangan lewatkan kesempatan memiliki novel yang luar biasa ini!</h4>
-      <div className="card-container">
+    <div className="dashboard-container">
+      <h2 className="dashboard-title">Selamat Datang Di Toko Novel</h2>
+      {!isLoggedIn && (
+        <h4 className="dashboard-subtitle">Anda belum login. Silakan login untuk pengalaman penuh.</h4>
+      )}
+      <h4 className="dashboard-description">
+        Cerita terbaik sedang menunggu untuk Anda baca. Jangan lewatkan kesempatan memiliki novel yang luar biasa ini!
+      </h4>
+      <div className="dashboard-card-container">
         {books.map((book) => (
-          <div className="card" key={book.id}>
-            <img src={book.images} alt={book.judul} className="card-image" />
-            <div className="card-content">
-              <h3>{book.judul}</h3>
-              <p>{book.penulis}</p>
-              <p>{book.rating}</p>
-              <p>{book.desc}</p>
-              <p>{book.price}</p>
+          <div className="dashboard-card" key={book.id}>
+            <img src={book.images} alt={book.judul} className="dashboard-card-image" />
+            <div className="dashboard-card-content">
+              <h3 className="dashboard-card-title">{book.judul}</h3>
+              <p className="dashboard-card-author">{book.penulis}</p>
+              <p className="dashboard-card-rating">{book.rating}</p>
+              <p className="dashboard-card-description">{book.desc}</p>
+              <p className="dashboard-card-price">{book.price}</p>
             </div>
           </div>
         ))}

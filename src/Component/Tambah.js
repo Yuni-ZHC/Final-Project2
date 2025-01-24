@@ -6,8 +6,36 @@ import "../Css/Tambah.css";
 
 const API_URL = "http://localhost:8080/api/data";
 
+// Fungsi untuk upload gambar ke S3
+const uploadToS3 = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const response = await fetch("https://s3.lynk2.co/api/s3/Tambah", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error("Gagal mengupload gambar ke S3");
+    }
+
+    const data = await response.json();
+    if (data.data && data.data.url_file) {
+      console.log("URL gambar berhasil didapat:", data.data.url_file);
+      return data.data.url_file;
+    } else {
+      throw new Error("URL gambar tidak tersedia dalam respons S3");
+    }
+  } catch (error) {
+    console.error("Error upload ke S3:", error);
+    throw error;
+  }
+};
+
 function Tambah() {
-  const [tambah, settambah] = useState({
+  const [newProduct, setNewProduct] = useState({
     judulNovel: "",
     penulisNovel: "",
     ratingNovel: "",
@@ -35,8 +63,8 @@ function Tambah() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    settambah({
-      ...tambah,
+    setNewProduct({
+      ...newProduct,
       [name]: value,
     });
   };
@@ -45,108 +73,169 @@ function Tambah() {
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleSubmit = async (e) => {
+  const handleAddProduct = async (e) => {
     e.preventDefault();
 
-    if (!tambah.judulNovel || !tambah.penulisNovel || !tambah.ratingNovel || !tambah.deskripsiNovel || !tambah.hargaNovel) {
+    const { judulNovel, penulisNovel, ratingNovel, deskripsiNovel, hargaNovel } = newProduct;
+
+    // Validasi input
+    if (!judulNovel || !penulisNovel || !ratingNovel || !deskripsiNovel || !hargaNovel || !selectedFile) {
       Swal.fire({
-        icon: "error",
-        title: "Semua field wajib diisi",
-        text: "Pastikan semua informasi sudah lengkap.",
+        icon: 'warning',
+        title: 'Harap Isi Semua Kolom!',
+        text: 'Silakan isi semua kolom untuk menambahkan produk.',
+        confirmButtonColor: '#9B4D96',
       });
       return;
     }
 
-    const formData = new FormData();
-    formData.append("produk", JSON.stringify(tambah));
-    if (selectedFile) {
-      formData.append("file", selectedFile);
+    if (isNaN(ratingNovel) || isNaN(hargaNovel)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Data Tidak Valid',
+        text: 'Harga dan stok harus berupa angka.',
+        confirmButtonColor: '#9B4D96',
+      });
+      return;
+    }
+
+    // Ambil ID Admin dari localStorage
+    if (!idAdmin) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Admin Tidak Ditemukan!',
+        text: 'Tidak ada informasi admin yang ditemukan.',
+        confirmButtonColor: '#9B4D96',
+      });
+      return;
     }
 
     try {
+      let imageUrl = "";
+
+      // Jika file gambar ada, upload ke S3
+      if (selectedFile) {
+        Swal.fire({
+          title: "Mengupload gambar...",
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+        });
+
+        imageUrl = await uploadToS3(selectedFile);
+
+        Swal.close();
+      }
+
+      // Kirim data ke server dalam bentuk FormData
+      const formData = new FormData();
+      formData.append("produk", JSON.stringify({
+        judulNovel,
+        penulisNovel,
+        ratingNovel,
+        deskripsiNovel,
+        hargaNovel,
+      }));
+
+      // Sertakan URL gambar jika upload berhasil
+      if (imageUrl) {
+        formData.append("file", selectedFile);
+      }
+
       Swal.fire({
-        title: "Menambahkan data...",
+        title: "Menambahkan produk...",
         allowOutsideClick: false,
         didOpen: () => {
           Swal.showLoading();
         },
       });
 
-      const response = await axios.post(`${API_URL}/tambah/${idAdmin}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      // Kirim data ke backend
+      const response = await axios.post(
+        `${API_URL}/data/tambah/${idAdmin}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       Swal.close();
       Swal.fire({
         icon: "success",
-        title: "Data berhasil ditambahkan!",
+        title: `Produk ${response.data.judulNovel} berhasil ditambahkan.`,
         showConfirmButton: false,
         timer: 1500,
       });
       navigate("/books");
     } catch (error) {
-      console.error("Terjadi kesalahan:", error);
       Swal.fire({
-        icon: "error",
-        title: "Gagal menambahkan data",
-        text: error.response?.data?.message || "Terjadi kesalahan pada server.",
+        icon: 'error',
+        title: 'Gagal Menambahkan Produk',
+        text: error.response?.data?.message || 'Terjadi kesalahan saat menambahkan produk.',
+        confirmButtonColor: '#9B4D96',
       });
+      console.error("Error:", error.response || error.message);
     }
   };
 
   return (
-    <div className="main-content">
-      <h2>Tambah Novel</h2>
-      <form onSubmit={handleSubmit} className="form-container">
+    <div className="add-container">
+      <div className="add-product">
+        <h2>Tambah Produk</h2>
         <input
           type="text"
           name="judulNovel"
-          placeholder="Judul"
-          value={tambah.judulNovel}
+          value={newProduct.judulNovel}
           onChange={handleChange}
+          placeholder="Judul Novel"
           required
         />
         <input
           type="text"
           name="penulisNovel"
-          placeholder="Penulis"
-          value={tambah.penulisNovel}
+          value={newProduct.penulisNovel}
           onChange={handleChange}
+          placeholder="Penulis Novel"
           required
         />
         <input
-          type="text"
+          type= "text"
           name="ratingNovel"
-          placeholder="Rating"
-          value={tambah.ratingNovel}
+          value={newProduct.ratingNovel}
           onChange={handleChange}
+          placeholder="Rating Novel"
           required
         />
         <input
           type="text"
           name="deskripsiNovel"
-          placeholder="Deskripsi"
-          value={tambah.deskripsiNovel}
+          value={newProduct.deskripsiNovel}
           onChange={handleChange}
+          placeholder="Deskripsi Novel"
           required
         />
         <input
           type="number"
           name="hargaNovel"
-          placeholder="Harga"
-          value={tambah.hargaNovel}
+          value={newProduct.hargaNovel}
           onChange={handleChange}
+          placeholder="Harga Novel"
           required
         />
         <input
           type="file"
           accept="image/*"
           onChange={handleFileChange}
+          required
         />
-        <button type="submit">Tambah Novel</button>
-      </form>
+        <div className="button-group">
+          <button onClick={handleAddProduct}>Tambah</button>
+          <button onClick={() => navigate("/product-list")}>Batal</button>
+        </div>
+      </div>
     </div>
   );
 }

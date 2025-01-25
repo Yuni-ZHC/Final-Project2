@@ -15,23 +15,10 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
           <li className="navbar-item">
             <Link to="/dashboard" className="navbar-link">Home</Link>
           </li>
-
-          {isLoggedIn ? (
-            <>
-              {/* Jika sudah login, tampilkan Produk dan Logout */}
-              <li className="navbar-item">
-                <Link to="/books" className="navbar-link">Produk</Link>
-              </li>
-              <li className="navbar-item">
-                <button onClick={onLogout} className="navbar-btn">Logout</button>
-              </li>
-            </>
-          ) : (
-            // Jika belum login, tampilkan tombol Login
             <li className="navbar-item">
               <Link to="/login" className="navbar-btn navbar-login">Login</Link>
             </li>
-          )}
+          
         </ul>
       </div>
     </nav>

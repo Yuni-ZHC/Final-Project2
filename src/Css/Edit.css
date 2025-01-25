@@ -1,154 +1,83 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(to right, #1a1a3d, #593d70, #9c75a1);
-  color: #ffffff;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* EditData.css */
+
+/* Container utama */
+.edit-container {
+  background-color: #f4f8fb;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px; /* Ukuran form lebih kecil */
+  margin: 95px auto 0 auto; /* Margin atas ditambah agar tidak ketutup navbar */
 }
 
-/* Centered Card */
-.main-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  max-width: 400px;
-  width: 100%;
-}
-
-h2 {
+/* Judul */
+.edit-title {
+  font-size: 1.8rem; /* Ukuran judul lebih kecil */
+  color: #007bff;
   text-align: center;
-  font-size: 24px;
   margin-bottom: 20px;
-  color: #fff;
 }
 
-.form-container {
-  width: 100%;
+/* Form */
+.edit-form {
   display: flex;
   flex-direction: column;
+  gap: 12px; /* Mengurangi jarak antar elemen */
 }
 
-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: #fff;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: background 0.3s, box-shadow 0.3s;
-}
-
-input:focus {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+/* Input fields */
+.edit-input {
+  padding: 8px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  font-size: 0.9rem; /* Ukuran font lebih kecil */
   outline: none;
 }
 
-input::placeholder {
-  color: #ccc;
+.edit-input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 91, 255, 0.5);
 }
 
-button {
-  background: #4e79a7;
+/* File input */
+.edit-file {
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #f0f9ff;
+  font-size: 0.9rem; /* Ukuran font lebih kecil */
+}
+
+/* Tombol simpan - tombol di tengah */
+.edit-submit-btn {
+  background-color: #007bff;
+  color: white;
   border: none;
-  color: #fff;
-  padding: 12px;
-  font-size: 16px;
-  border-radius: 8px;
+  padding: 10px 16px; /* Padding lebih kecil */
+  border-radius: 5px;
+  font-size: 1rem; /* Ukuran font lebih kecil */
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease;
+  align-self: center; /* Membuat tombol berada di tengah */
 }
 
-button:hover {
-  background: #3c5f7a;
-  transform: scale(1.05);
+.edit-submit-btn:hover {
+  background-color: #0056b3;
 }
 
-button:active {
-  background: #2c4861;
-  transform: scale(1);
-}
-
-button:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
-
-/* Responsive Design */
-
-/* For screens smaller than 768px (tablets and below) */
+/* Responsif */
 @media (max-width: 768px) {
-  .main-content {
-      padding: 20px;
-      width: 90%; /* Ensure the card takes most of the screen width */
+  .edit-container {
+    padding: 15px;
+    max-width: 350px; /* Ukuran form lebih kecil pada layar kecil */
   }
 
-  h2 {
-      font-size: 22px; /* Slightly smaller title */
+  .edit-title {
+    font-size: 1.6rem; /* Ukuran judul lebih kecil pada perangkat kecil */
   }
 
-  input {
-      font-size: 13px;
-      padding: 11px;
-  }
-
-  button {
-      font-size: 15px;
-      padding: 11px;
-  }
-}
-
-/* For screens smaller than 500px (mobile phones) */
-@media (max-width: 500px) {
-  .main-content {
-      padding: 15px;
-      width: 95%; /* Ensure the card takes nearly the entire screen width */
-  }
-
-  h2 {
-      font-size: 20px; /* Smaller title for mobile */
-  }
-
-  input {
-      font-size: 12px;
-      padding: 10px;
-  }
-
-  button {
-      font-size: 14px;
-      padding: 10px;
-  }
-}
-
-/* For very small screens (like older smartphones) */
-@media (max-width: 320px) {
-  .main-content {
-      padding: 10px;
-      width: 95%;
-  }
-
-  h2 {
-      font-size: 18px; /* Further reduce title size */
-  }
-
-  input {
-      font-size: 11px;
-      padding: 8px;
-  }
-
-  button {
-      font-size: 13px;
-      padding: 9px;
+  .edit-input,
+  .edit-file,
+  .edit-submit-btn {
+    font-size: 0.9rem; /* Ukuran font lebih kecil pada perangkat kecil */
   }
 }

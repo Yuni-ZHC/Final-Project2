@@ -53,10 +53,11 @@ const Books = () => {
   };
 
   return (
+    
     <div className="products-container">
       <div className="products-header">
         <h2 className="products-title">Daftar Produk</h2>
-        <button className="add-product-btn" onClick={() => navigate("/tambah")}>+</button>
+        <button className="add-produk-btn" onClick={() => navigate("/tambah")}>+</button>
       </div>
       <div className="products-table-container">
         <table className="products-table">

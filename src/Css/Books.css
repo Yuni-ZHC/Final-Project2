@@ -22,19 +22,19 @@
   margin: 0; /* Hilangkan margin bawaan jika ada */
 }
 
-.add-product-btn {
-  font-size: 1.8rem;
-  padding: 10px 15px;
+.add-produk-btn {
+  font-size: 1.4rem;
+  width: 120px;  /* Atur lebar tombol */
+  height: 40px;  /* Atur tinggi tombol */
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   z-index: 1; /* Tambahkan z-index jika tombol tertumpuk */
 }
 
-.add-product-btn:hover {
+.add-produk-btn:hover {
   background-color: #0056b3;
 }
 
@@ -69,35 +69,58 @@
   border-radius: 5px;
 }
 
+/* Container untuk tombol aksi */
 .action-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px; /* Memperbesar jarak antar tombol */
   justify-content: center;
+  margin-top: 20px;
 }
 
+/* Gaya dasar untuk setiap tombol aksi */
 .action-btn {
-  padding: 8px 12px;
+  padding: 12px 18px; /* Menambahkan padding agar tombol lebih besar */
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 16px; /* Ukuran font lebih besar untuk keterbacaan */
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* Menghindari teks yang terpotong */
+  min-width: 100px; /* Memberikan lebar minimum agar tombol lebih seragam */
+  display: inline-block; /* Menghindari pemotongan teks */
 }
 
+/* Tombol Edit */
 .edit-btn {
   background-color: #28a745;
   color: white;
-  border: none;
 }
 
 .edit-btn:hover {
   background-color: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Tombol Delete */
 .delete-btn {
   background-color: #dc3545;
   color: white;
-  border: none;
 }
 
 .delete-btn:hover {
   background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
+/* Gaya untuk tombol saat di disable state */
+.action-btn:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+

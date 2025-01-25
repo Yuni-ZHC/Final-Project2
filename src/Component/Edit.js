@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
-// import "../Css/EditData.css";
-
+import "../Css/Edit.css"; // Pastikan ini terhubung dengan file CSS
 
 const API_URL = "http://localhost:8080/api/data";
-
 
 // Fungsi untuk upload gambar ke S3
 const uploadToS3 = async (file) => {
@@ -111,7 +109,6 @@ function Edit() {
         ...formData,
         gambarNovel: imageUrl, // Gunakan URL gambar dari S3
       });
-      
 
       Swal.fire({
         icon: "success",
@@ -131,10 +128,11 @@ function Edit() {
   };
 
   return (
-    <div className="main-content">
-      <h2>Edit Data</h2>
-      <form onSubmit={handleSubmit} className="form-container">
+    <div className="edit-container">
+      <h2 className="edit-title">Edit Data</h2>
+      <form onSubmit={handleSubmit} className="edit-form">
         <input
+          className="edit-input"
           type="text"
           name="judulNovel"
           placeholder="Judul"
@@ -142,6 +140,7 @@ function Edit() {
           onChange={handleChange}
         />
         <input
+          className="edit-input"
           type="text"
           name="penulisNovel"
           placeholder="Penulis"
@@ -149,6 +148,7 @@ function Edit() {
           onChange={handleChange}
         />
         <input
+          className="edit-input"
           type="text"
           name="ratingNovel"
           placeholder="Rating"
@@ -156,6 +156,7 @@ function Edit() {
           onChange={handleChange}
         />
         <input
+          className="edit-input"
           type="text"
           name="deskripsiNovel"
           placeholder="Deskripsi"
@@ -163,6 +164,7 @@ function Edit() {
           onChange={handleChange}
         />
         <input
+          className="edit-input"
           type="text"
           name="hargaNovel"
           placeholder="Harga"
@@ -170,11 +172,12 @@ function Edit() {
           onChange={handleChange}
         />
         <input
+          className="edit-file"
           type="file"
           accept="image/*"
           onChange={handleFileChange}
         />
-        <button type="submit">Simpan</button>
+        <button type="submit" className="edit-submit-btn">Simpan</button>
       </form>
     </div>
   );

@@ -153,7 +153,7 @@ function Tambah() {
 
       // Kirim data ke backend
       const response = await axios.post(
-        `${API_URL}/data/tambah/${idAdmin}`,
+        `${API_URL}/tambah/${idAdmin}`,
         formData,
         {
           headers: {

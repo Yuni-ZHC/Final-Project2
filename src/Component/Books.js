@@ -3,6 +3,7 @@ import "../Css/Books.css";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
+import NavbarNew from "./NavbarNew"; // Import komponen Navbar
 
 const API_URL = "http://localhost:8080/api/data";
 
@@ -53,60 +54,71 @@ const Books = () => {
   };
 
   return (
-    
-    <div className="products-container">
-      <div className="products-header">
-        <h2 className="products-title">Daftar Produk</h2>
-        <button className="add-produk-btn" onClick={() => navigate("/tambah")}>+</button>
-      </div>
-      <div className="products-table-container">
-        <table className="products-table">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Foto</th>
-              <th>Judul</th>
-              <th>Penulis</th>
-              <th>Rating</th>
-              <th>Deskripsi</th>
-              <th>Harga</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {produk.map((book, index) => (
-              <tr key={book.id}>
-                <td>{index + 1}</td>
-                <td>
-                  {book.gambarNovel ? (
-                    <img
-                      src={book.gambarNovel}
-                      alt={book.judulNovel}
-                      className="product-image"
-                    />
-                  ) : (
-                    "Foto Tidak Ditemukan"
-                  )}
-                </td>
-                <td>{book.judulNovel}</td>
-                <td>{book.penulisNovel}</td>
-                <td>{book.ratingNovel}</td>
-                <td>{book.deskripsiNovel}</td>
-                <td>{book.hargaNovel}</td>
-                <td>
-                  <div className="action-buttons">
-                    <Link to={`/edit/${book.id}`}>
-                      <button className="action-btn edit-btn">Edit</button>
-                    </Link>
-                    <button className="action-btn delete-btn" onClick={() => handleDeleteBook(book.id)}>Hapus</button>
-                  </div>
-                </td>
+    <>
+      {/* Tambahkan Navbar */}
+      <NavbarNew />
+      
+      <div className="products-container">
+        <div className="products-header">
+          <h2 className="products-title">Daftar Produk</h2>
+          <button className="add-produk-btn" onClick={() => navigate("/tambah")}>
+            +
+          </button>
+        </div>
+        <div className="products-table-container">
+          <table className="products-table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Foto</th>
+                <th>Judul</th>
+                <th>Penulis</th>
+                <th>Rating</th>
+                <th>Deskripsi</th>
+                <th>Harga</th>
+                <th>Aksi</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {produk.map((book, index) => (
+                <tr key={book.id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    {book.gambarNovel ? (
+                      <img
+                        src={book.gambarNovel}
+                        alt={book.judulNovel}
+                        className="product-image"
+                      />
+                    ) : (
+                      "Foto Tidak Ditemukan"
+                    )}
+                  </td>
+                  <td>{book.judulNovel}</td>
+                  <td>{book.penulisNovel}</td>
+                  <td>{book.ratingNovel}</td>
+                  <td>{book.deskripsiNovel}</td>
+                  <td>{book.hargaNovel}</td>
+                  <td>
+                    <div className="action-buttons">
+                      <Link to={`/edit/${book.id}`}>
+                        <button className="action-btn edit-btn">Edit</button>
+                      </Link>
+                      <button
+                        className="action-btn delete-btn"
+                        onClick={() => handleDeleteBook(book.id)}
+                      >
+                        Hapus
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
